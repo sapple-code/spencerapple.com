@@ -7,8 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Spencer Apple (http://spencerapple.com/)",
-  "license": "MIT",
-  "dependencies": {
-    "detect-node": "^2.0.3"
-  }
+  "license": "MIT"
 }

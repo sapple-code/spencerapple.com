@@ -3,7 +3,7 @@ var dispatch = d3.dispatch("loaded"),
     twoDecimalRound = d3.format("$,.2f");
 
 document.addEventListener("DOMContentLoaded", function () {
-    d3.json("data/places.json", function (error, data) {
+    d3.json("data/places.json").then(function (data) {
         dispatch.call("loaded", this, data);
     });
 });

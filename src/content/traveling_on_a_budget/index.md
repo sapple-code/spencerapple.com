@@ -64,4 +64,4 @@ I spent a lot of time making reusable D3 components which was a challenge in its
 
 In the end, the length of our trip was determined by our budget, but how long one travels can also be determined by his or her tiredness, want of routine, and the desire to relax with friends and family.
 
-Check out [Visualizing Travel Effort](/content/visualizing-travel-effort/) to see where we spent the most time traveling.
+Check out [Visualizing Travel Effort](/content/visualizing_travel_effort/) to see where we spent the most time traveling.

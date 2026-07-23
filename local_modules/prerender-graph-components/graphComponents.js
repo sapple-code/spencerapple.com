@@ -1,7 +1,7 @@
 'use strict';
 
 const utils = require('./utils');
-const isNode = require('detect-node');
+const isNode = typeof window === 'undefined';
 
 module.exports.drawText = function drawText () {
     var t = function (d) { return null; },

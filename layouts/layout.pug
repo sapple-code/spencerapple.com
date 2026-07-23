@@ -29,7 +29,7 @@ html
     footer
       div.content-wrap
         block footer
-          section.about!= partials[0].contents.toString()
+          section.about!= collections.partials[0].contents.toString()
           section.copy
             p &copy; #{ new Date().getFullYear() } Spencer Apple &mdash; 
               a(href=site.repo) Site
