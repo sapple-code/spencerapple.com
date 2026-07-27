@@ -1,5 +1,24 @@
 var dispatch = d3.dispatch("loaded");
 
+function bindHighlightToggle(trigger, target) {
+    var pinned = false;
+
+    trigger
+        .style('cursor', 'pointer')
+        .on('mouseenter', function () {
+            target.classed('highlight', true);
+        })
+        .on('mouseleave', function () {
+            if (!pinned) {
+                target.classed('highlight', false);
+            }
+        })
+        .on('click', function () {
+            pinned = !pinned;
+            target.classed('highlight', pinned);
+        });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     d3.json("data/places.json").then(function (data) {
         dispatch.call("loaded", this, data);
@@ -72,13 +91,7 @@ dispatch.on("loaded.tavelTimePerPlaceScatterplot", function (data) {
     var medellinSelection = d3.selectAll('#travelTimePerPlaceScatterplot .chart .point')
         .filter(function (d) { return d.name === 'Medellín'; });
 
-    d3.select('#medellínMouse').on('mouseenter', function (d, i) {
-        medellinSelection.classed('highlight', true);
-    });
-
-    d3.select('#medellínMouse').on('mouseleave', function (d, i) {
-        medellinSelection.classed('highlight', false);
-    });
+    bindHighlightToggle(d3.select('#medellínMouse'), medellinSelection);
 });
 
 dispatch.on("loaded.travelTimeOvertotalTime", function (data) {
@@ -133,29 +146,17 @@ dispatch.on("loaded.travelTimeOvertotalTime", function (data) {
                     countryNumber[2] >= 1 && countryNumber[2] <= 3);
         });
 
-    d3.selectAll('.patagoniaMouse')
-        .on('mouseenter', function (d, i) {
-            patagonianSelection.classed('highlight', true); })
-        .on('mouseleave', function (d, i) {
-            patagonianSelection.classed('highlight', false); });
+    bindHighlightToggle(d3.selectAll('.patagoniaMouse'), patagonianSelection);
 
     var boliviaSelection = d3.selectAll('#travelTimeOverTotalTimePoints .chart .point')
         .filter(function (d) { return d.country === 'Bolivia'; });
 
-    d3.select('#boliviaMouse')
-        .on('mouseenter', function (d, i) {
-            boliviaSelection.classed('highlight', true); })
-        .on('mouseleave', function (d, i) {
-            boliviaSelection.classed('highlight', false); });
+    bindHighlightToggle(d3.select('#boliviaMouse'), boliviaSelection);
 
     var colombiaSelection = d3.selectAll('#travelTimeOverTotalTimePoints .chart .point')
         .filter(function (d) { return d.country === 'Colombia'; });
 
-    d3.select('#colombiaMouse')
-        .on('mouseenter', function (d, i) {
-            colombiaSelection.classed('highlight', true); })
-        .on('mouseleave', function (d, i) {
-            colombiaSelection.classed('highlight', false); });
+    bindHighlightToggle(d3.select('#colombiaMouse'), colombiaSelection);
 });
 
 dispatch.on("loaded.travelSpeedCountry", function (data) {

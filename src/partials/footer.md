@@ -1,6 +1,6 @@
-Located in the Bay Area, California. 
+Located in Sacramento, California.
 
-Enjoys eating, programming, reading, running, and traveling. 
+Enjoys eating, programming, reading, fitness, and traveling.
 
 Send me an email with comments, bugs, or words: ***spencertapple@gmail.com***
 
