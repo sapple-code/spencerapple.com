@@ -3,7 +3,7 @@
 const utils = require('./utils');
 const keyComponents = require('./keyComponents');
 const graphComponents = require('./graphComponents');
-const isNode = require('detect-node');
+const isNode = typeof window === 'undefined';
 
 module.exports.barChart = function () {
 

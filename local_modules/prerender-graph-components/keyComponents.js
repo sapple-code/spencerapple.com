@@ -49,13 +49,13 @@ function d3CheckBox () {
             .style("fill" , "none")
             .style("stroke-opacity", (checked)? 1 : 0);
 
-        g.on("click", function () {
+        g.on("click", function (event) {
             checked = !checked;
             mark.style("stroke-opacity", (checked)? 1 : 0);
 
             clickEvent(checked);
 
-            d3.event.stopPropagation();
+            event.stopPropagation();
         });
 
     }

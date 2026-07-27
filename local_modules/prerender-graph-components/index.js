@@ -2,7 +2,7 @@
 const graphs = require('./graphs');
 const keyComponents = require('./keyComponents');
 
-prerenderGraphComponents = module.exports = {
+const prerenderGraphComponents = {
     'barChart': graphs.barChart,
     'scatterplot': graphs.scatterplot,
     'lineChart': graphs.lineChart,
@@ -11,3 +11,8 @@ prerenderGraphComponents = module.exports = {
     'checkBoxRow': keyComponents.checkBoxRow
 }
 
+if (typeof window !== 'undefined') {
+    window.prerenderGraphComponents = prerenderGraphComponents;
+}
+
+module.exports = prerenderGraphComponents;

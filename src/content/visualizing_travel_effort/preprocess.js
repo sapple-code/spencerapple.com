@@ -1,7 +1,6 @@
-d3 = require('d3')
-fs = require('fs')
-path = require('path')
-prerenderGraphComponents = require('prerender-graph-components')
+const d3 = global.d3
+const path = require('path')
+const prerenderGraphComponents = require('prerender-graph-components')
 
 function parseNumber (numberString) {
     if (numberString === undefined) {

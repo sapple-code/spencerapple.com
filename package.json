@@ -2,30 +2,30 @@
   "name": "spencer-apple-site",
   "private": true,
   "repository": {
-    "url": "https://github.com/splayemu/spencerapple.com.git"
+    "type": "git",
+    "url": "https://github.com/sapple-code/spencerapple.com.git"
   },
+  "engines": {
+    "node": "22.x",
+    "npm": "10.x"
+  },
+  "packageManager": "npm@10.9.7",
   "dependencies": {
-    "browserify": "^13.1.1",
-    "d3": "^4.3.0",
-    "metalsmith": "^1.0.0",
-    "metalsmith-branch": "0.0.4",
-    "metalsmith-browserify-alt": "^1.0.1",
-    "metalsmith-collections": "^0.7.0",
-    "metalsmith-excerpts": "^1.1.0",
-    "metalsmith-if": "^0.1.1",
-    "metalsmith-layouts": "^1.4.1",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-paths": "^3.0.1",
-    "metalsmith-preprocess": "^0.1.1",
-    "metalsmith-serve": "0.0.7",
-    "metalsmith-watch": "^1.0.3",
-    "moment": "^2.17.1",
-    "prerender-graph-components": "file:./local_modules/prerender-graph-components",
-    "pug": "^2.0.0-beta6"
+    "@metalsmith/layouts": "3.0.0",
+    "@metalsmith/markdown": "1.10.0",
+    "d3": "7.9.0",
+    "esbuild": "0.28.1",
+    "jsdom": "29.1.1",
+    "jstransformer-pug": "0.4.0",
+    "metalsmith": "2.7.0",
+    "moment": "2.30.1",
+    "prerender-graph-components": "file:./local_modules/prerender-graph-components"
   },
   "scripts": {
+    "audit:dependencies": "npm audit --audit-level=low && npm audit signatures",
+    "build": "node build.js",
     "preview": "node build.js --preview",
-    "build": "rm -rf node_modules/prerender-graph-components; npm install; node build.js",
-    "update-local-modules": "rm -rf node_modules/prerender-graph-components; npm install"
+    "test": "npm run build && node test/build-smoke.js",
+    "update-local-modules": "npm install --ignore-scripts"
   }
 }

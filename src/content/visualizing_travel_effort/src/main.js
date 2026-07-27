@@ -1,7 +1,7 @@
 var dispatch = d3.dispatch("loaded");
 
 document.addEventListener("DOMContentLoaded", function () {
-    d3.json("data/places.json", function (error, data) {
+    d3.json("data/places.json").then(function (data) {
         dispatch.call("loaded", this, data);
     });
 });
