@@ -115,27 +115,69 @@ module.exports.barChart = function () {
                 bars.select('text')
                     .classed('invisible', true);
 
-                bars.select('rect')
-                    .on("mouseenter", function (d) {
-                        selection.select('.key .colorRow')
-                            .datum(d)
-                            .call(keyComponents.colorRow()
-                                      .text(d.country)
-                                      .color(color(d)));
+                function showBar(bar, d) {
+                    selection.select('.key .colorRow')
+                        .datum(d)
+                        .call(keyComponents.colorRow()
+                                  .text(d.country)
+                                  .color(color(d)));
 
-                        selection.selectAll('g')
-                            .classed("highlight", false);
-                        d3.select(this.parentNode)
-                            .classed("highlight", true)
-                            .raise(); })
-                    .on("mouseleave", function (d) {
-                        // nullify the color key
-                        selection.select('.key .colorRow')
-                            .datum(d)
-                            .call(keyComponents.colorRow());
+                    selection.selectAll('g')
+                        .classed("highlight", false);
+                    d3.select(bar.parentNode)
+                        .classed("highlight", true)
+                        .raise();
+                }
 
-                        d3.select(this.parentNode)
-                            .classed("highlight", false) });
+                function hideBar(bar, d) {
+                    selection.select('.key .colorRow')
+                        .datum(d)
+                        .call(keyComponents.colorRow());
+
+                    d3.select(bar.parentNode)
+                        .classed("highlight", false);
+                }
+
+                var barRects = bars.select('rect');
+
+                barRects
+                    .style('cursor', 'pointer')
+                    .on("mouseenter", function (event, d) {
+                        showBar(this, d);
+                    })
+                    .on("mouseleave", function (event, d) {
+                        if (!this.__highlightPinned) {
+                            hideBar(this, d);
+                        }
+                    })
+                    .on("click", function (event, d) {
+                        var wasPinned = Boolean(this.__highlightPinned);
+                        barRects.each(function () {
+                            this.__highlightPinned = false;
+                        });
+
+                        this.__highlightPinned = !wasPinned;
+                        if (this.__highlightPinned) {
+                            showBar(this, d);
+                        } else {
+                            hideBar(this, d);
+                        }
+                    });
+
+                var barNodes = barRects.nodes();
+                this.ownerDocument.addEventListener('click', function (event) {
+                    var clickedBar = barNodes.some(function (bar) {
+                        return bar.contains(event.target);
+                    });
+                    if (clickedBar) return;
+
+                    barRects.each(function () {
+                        this.__highlightPinned = false;
+                    });
+                    selection.selectAll('g').classed('highlight', false);
+                    selection.select('.key .colorRow')
+                        .call(keyComponents.colorRow());
+                });
             })
             .onPlot("key", function (data, width, height, xScale, yScale) {
                   var selection = d3.select(this),
@@ -305,27 +347,69 @@ module.exports.scatterplot = function () {
                     .data(data)
                     .call(dotLabel);
 
-                var circle = outputSelection.select('circle')
-                    .on('mouseenter', function (d) {
-                        selection.select('.key .colorRow')
-                            .datum(d)
-                            .call(keyComponents.colorRow()
-                                      .text(d.country)
-                                      .color(color(d)));
+                function showPoint(point, d) {
+                    selection.select('.key .colorRow')
+                        .datum(d)
+                        .call(keyComponents.colorRow()
+                                  .text(d.country)
+                                  .color(color(d)));
 
-                        selection.selectAll('g')
-                            .classed('highlight', false);
-                        d3.select(this.parentNode)
-                            .classed('highlight', true)
-                            .raise(); })
-                    .on('mouseleave', function (d) {
-                        // nullify the color key
-                        selection.select('.key .colorRow')
-                            .datum(d)
-                            .call(keyComponents.colorRow());
+                    selection.selectAll('g')
+                        .classed('highlight', false);
+                    d3.select(point.parentNode)
+                        .classed('highlight', true)
+                        .raise();
+                }
 
-                        d3.select(this.parentNode)
-                            .classed('highlight', false) });
+                function hidePoint(point, d) {
+                    selection.select('.key .colorRow')
+                        .datum(d)
+                        .call(keyComponents.colorRow());
+
+                    d3.select(point.parentNode)
+                        .classed('highlight', false);
+                }
+
+                var points = outputSelection.select('circle');
+
+                points
+                    .style('cursor', 'pointer')
+                    .on('mouseenter', function (event, d) {
+                        showPoint(this, d);
+                    })
+                    .on('mouseleave', function (event, d) {
+                        if (!this.__highlightPinned) {
+                            hidePoint(this, d);
+                        }
+                    })
+                    .on('click', function (event, d) {
+                        var wasPinned = Boolean(this.__highlightPinned);
+                        points.each(function () {
+                            this.__highlightPinned = false;
+                        });
+
+                        this.__highlightPinned = !wasPinned;
+                        if (this.__highlightPinned) {
+                            showPoint(this, d);
+                        } else {
+                            hidePoint(this, d);
+                        }
+                    });
+
+                var pointNodes = points.nodes();
+                this.ownerDocument.addEventListener('click', function (event) {
+                    var clickedPoint = pointNodes.some(function (point) {
+                        return point.contains(event.target);
+                    });
+                    if (clickedPoint) return;
+
+                    points.each(function () {
+                        this.__highlightPinned = false;
+                    });
+                    selection.selectAll('g').classed('highlight', false);
+                    selection.select('.key .colorRow')
+                        .call(keyComponents.colorRow());
+                });
             })
             .onPlot("key-server", function (data, width, height, xScale, yScale) {
                 if (!isNode) return;

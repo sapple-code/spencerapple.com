@@ -55,6 +55,20 @@ const travelHtml = fs.readFileSync(
 );
 assert.equal((travelHtml.match(/<svg/g) || []).length, 7);
 
+const preprocessingHtml = fs.readFileSync(
+  path.join(buildDirectory, 'content/preprocess_d3_visualizations/index.html'),
+  'utf8'
+);
+assert.match(preprocessingHtml, /class="language-text"/);
+assert.match(preprocessingHtml, /class="hljs-keyword"/);
+
+const homeHtml = fs.readFileSync(
+  path.join(buildDirectory, 'index.html'),
+  'utf8'
+);
+assert.match(homeHtml, /Located in Sacramento, California/);
+assert.match(homeHtml, /reading, fitness, and traveling/);
+
 const budgetData = JSON.parse(
   fs.readFileSync(
     path.join(buildDirectory, 'content/traveling_on_a_budget/data/places.json'),

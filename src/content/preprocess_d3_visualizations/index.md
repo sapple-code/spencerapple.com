@@ -41,7 +41,7 @@ JSDom is a Node implementation of the DOM; it's api allows you to do pretty much
 For each html file, it looks for the file 'preprocess.js' in the same directory. 
 The following directory structure will please metalsmith-preprocess.
 
-```
+```text
 .
 ├── build.js
 ├── package.json

@@ -8,6 +8,7 @@ const esbuild = require('esbuild');
 const Metalsmith = require('metalsmith');
 const layouts = require('@metalsmith/layouts');
 const markdown = require('@metalsmith/markdown');
+const hljs = require('highlight.js');
 const moment = require('moment');
 
 const preview = process.argv.includes('--preview');
@@ -239,7 +240,18 @@ function createSite() {
     .source('./src')
     .destination('./build')
     .ignore(['**/.*.swp'])
-    .use(markdown())
+    .use(
+      markdown({
+        engineOptions: {
+          highlight(code, language) {
+            if (language && hljs.getLanguage(language)) {
+              return hljs.highlight(code, { language }).value;
+            }
+            return hljs.highlightAuto(code).value;
+          }
+        }
+      })
+    )
     .use(addExcerpts())
     .use(addCollectionsAndPaths())
     .use(useCurrentD3())
