@@ -138,7 +138,9 @@ module.exports.barChart = function () {
                         .classed("highlight", false);
                 }
 
-                bars.select('rect')
+                var barRects = bars.select('rect');
+
+                barRects
                     .style('cursor', 'pointer')
                     .on("mouseenter", function (event, d) {
                         showBar(this, d);
@@ -150,7 +152,7 @@ module.exports.barChart = function () {
                     })
                     .on("click", function (event, d) {
                         var wasPinned = Boolean(this.__highlightPinned);
-                        bars.select('rect').each(function () {
+                        barRects.each(function () {
                             this.__highlightPinned = false;
                         });
 
@@ -161,6 +163,21 @@ module.exports.barChart = function () {
                             hideBar(this, d);
                         }
                     });
+
+                var barNodes = barRects.nodes();
+                this.ownerDocument.addEventListener('click', function (event) {
+                    var clickedBar = barNodes.some(function (bar) {
+                        return bar.contains(event.target);
+                    });
+                    if (clickedBar) return;
+
+                    barRects.each(function () {
+                        this.__highlightPinned = false;
+                    });
+                    selection.selectAll('g').classed('highlight', false);
+                    selection.select('.key .colorRow')
+                        .call(keyComponents.colorRow());
+                });
             })
             .onPlot("key", function (data, width, height, xScale, yScale) {
                   var selection = d3.select(this),
@@ -353,7 +370,9 @@ module.exports.scatterplot = function () {
                         .classed('highlight', false);
                 }
 
-                outputSelection.select('circle')
+                var points = outputSelection.select('circle');
+
+                points
                     .style('cursor', 'pointer')
                     .on('mouseenter', function (event, d) {
                         showPoint(this, d);
@@ -365,7 +384,7 @@ module.exports.scatterplot = function () {
                     })
                     .on('click', function (event, d) {
                         var wasPinned = Boolean(this.__highlightPinned);
-                        outputSelection.select('circle').each(function () {
+                        points.each(function () {
                             this.__highlightPinned = false;
                         });
 
@@ -376,6 +395,21 @@ module.exports.scatterplot = function () {
                             hidePoint(this, d);
                         }
                     });
+
+                var pointNodes = points.nodes();
+                this.ownerDocument.addEventListener('click', function (event) {
+                    var clickedPoint = pointNodes.some(function (point) {
+                        return point.contains(event.target);
+                    });
+                    if (clickedPoint) return;
+
+                    points.each(function () {
+                        this.__highlightPinned = false;
+                    });
+                    selection.selectAll('g').classed('highlight', false);
+                    selection.select('.key .colorRow')
+                        .call(keyComponents.colorRow());
+                });
             })
             .onPlot("key-server", function (data, width, height, xScale, yScale) {
                 if (!isNode) return;

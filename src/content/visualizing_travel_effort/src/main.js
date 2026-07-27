@@ -2,6 +2,7 @@ var dispatch = d3.dispatch("loaded");
 
 function bindHighlightToggle(trigger, target) {
     var pinned = false;
+    var triggerNodes = trigger.nodes();
 
     trigger
         .style('cursor', 'pointer')
@@ -17,6 +18,16 @@ function bindHighlightToggle(trigger, target) {
             pinned = !pinned;
             target.classed('highlight', pinned);
         });
+
+    document.addEventListener('click', function (event) {
+        var clickedTrigger = triggerNodes.some(function (node) {
+            return node.contains(event.target);
+        });
+        if (clickedTrigger) return;
+
+        pinned = false;
+        target.classed('highlight', false);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
