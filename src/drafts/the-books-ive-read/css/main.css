@@ -1,0 +1,71 @@
+.reading-chart {
+  margin: 0 0 2.5em;
+}
+
+.reading-chart svg {
+  display: block;
+  height: auto;
+  margin-left: 0;
+  max-width: 100%;
+  overflow: visible;
+  width: 100%;
+}
+
+.reading-chart .domain,
+.reading-chart .tick line {
+  stroke: #c9c9c9;
+}
+
+.reading-chart text {
+  fill: #171717;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 12px;
+}
+
+.reading-chart .chart-note {
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 0.65em;
+}
+
+.reading-chart .legend {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em 0.9em;
+  list-style: none;
+  margin: 0 0 0.8em;
+}
+
+.reading-chart .legend li {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.35em;
+  margin: 0;
+}
+
+.reading-chart .legend-swatch {
+  border-radius: 2px;
+  display: inline-block;
+  height: 0.75em;
+  width: 0.75em;
+}
+
+.reading-chart .month-cell {
+  stroke: #f8f8f8;
+  stroke-width: 2px;
+}
+
+.reading-chart .value-label {
+  font-weight: 700;
+}
+
+.reading-chart .zero-label {
+  fill: #777;
+}
+
+@media (max-width: 43.74em) {
+  .reading-chart text {
+    font-size: 11px;
+  }
+}
