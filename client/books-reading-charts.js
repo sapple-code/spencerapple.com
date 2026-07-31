@@ -26,6 +26,15 @@ const books = readingHistory
     month: Number(book.readDate.slice(5, 7))
   }));
 
+const datedBooksWithPages = books.filter((book) => book.pages);
+const seriesNames = Array.from(
+  d3.group(
+    datedBooksWithPages.filter((book) => book.series),
+    (book) => book.series
+  ).keys()
+).sort(d3.ascending);
+let selectedSeries = 'All books';
+
 function clear(element) {
   d3.select(element).selectAll('*').remove();
 }
@@ -228,7 +237,231 @@ function renderAveragePages() {
   d3.select(element)
     .append('p')
     .attr('class', 'chart-note')
-    .text('Only 48 of 99 read books have page counts. Each label shows known-page sample / genre total; averages are descriptive, not complete estimates.');
+    .text('All 99 read books now have page counts: 48 came from the sheet, 50 were matched to the recorded Kindle ASIN, and Good to Great uses the original hardcover edition. Page counts vary by edition.');
+}
+
+function renderBookScatter() {
+  const element = document.querySelector('#books-page-scatter');
+  if (!element) return;
+
+  clear(element);
+  appendLegend(element);
+
+  const controls = d3.select(element).append('div').attr('class', 'chart-controls');
+  controls
+    .append('label')
+    .attr('for', 'series-highlight')
+    .text('Highlight a series');
+  const select = controls
+    .append('select')
+    .attr('id', 'series-highlight')
+    .attr('class', 'series-select')
+    .on('change', (event) => {
+      selectedSeries = event.target.value;
+      updateHighlight();
+    });
+  select
+    .selectAll('option')
+    .data(['All books', ...seriesNames])
+    .join('option')
+    .attr('value', (name) => name)
+    .property('selected', (name) => name === selectedSeries)
+    .text((name) => name);
+
+  const width = widthFor(element);
+  const height = width < 480 ? 350 : 430;
+  const margin = { top: 18, right: 18, bottom: 46, left: 54 };
+  const x = d3
+    .scaleUtc()
+    .domain([
+      d3.utcYear.floor(d3.min(datedBooksWithPages, (book) => book.readDateValue)),
+      d3.max(datedBooksWithPages, (book) => book.readDateValue)
+    ])
+    .range([margin.left, width - margin.right]);
+  const y = d3
+    .scaleLinear()
+    .domain([0, d3.max(datedBooksWithPages, (book) => book.pages)])
+    .nice()
+    .range([height - margin.bottom, margin.top]);
+  const svg = appendSvg(
+    element,
+    width,
+    height,
+    'Scatterplot of 97 dateable books by read date and page count, colored by broad genre. A series selector highlights related books.'
+  );
+
+  svg
+    .append('g')
+    .attr('class', 'chart-grid')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6).tickSize(-(width - margin.left - margin.right)).tickFormat(''))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('g')
+    .attr('transform', `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).ticks(width < 480 ? 4 : d3.utcYear.every(1)).tickFormat(d3.utcFormat('%Y')))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('g')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('text')
+    .attr('class', 'axis-label')
+    .attr('x', margin.left)
+    .attr('y', 11)
+    .text('Pages');
+
+  const dots = svg
+    .append('g')
+    .selectAll('circle')
+    .data(datedBooksWithPages)
+    .join('circle')
+    .attr('class', 'book-dot')
+    .attr('cx', (book) => x(book.readDateValue))
+    .attr('cy', (book) => y(book.pages))
+    .attr('fill', (book) => colors.get(book.genre))
+    .attr('r', 4.5);
+  dots
+    .append('title')
+    .text(
+      (book) =>
+        `${book.title}\n${d3.utcFormat('%B %-d, %Y')(book.readDateValue)} · ${book.pages} pages · ${book.genre}${book.series ? ` · ${book.series}` : ''}`
+    );
+
+  const detail = d3
+    .select(element)
+    .append('div')
+    .attr('class', 'series-detail')
+    .attr('aria-live', 'polite');
+
+  function updateHighlight() {
+    const allSelected = selectedSeries === 'All books';
+    dots
+      .classed('is-muted', (book) => !allSelected && book.series !== selectedSeries)
+      .classed('is-highlighted', (book) => !allSelected && book.series === selectedSeries)
+      .attr('r', (book) => (!allSelected && book.series === selectedSeries ? 7 : 4.5));
+
+    if (allSelected) {
+      detail.html(
+        '<strong>All dateable books</strong><span>97 dots · 45,464 pages · 2020–2026. Choose a series to isolate its run and list its books.</span>'
+      );
+      return;
+    }
+
+    const matches = datedBooksWithPages.filter(
+      (book) => book.series === selectedSeries
+    );
+    const extent = d3.extent(matches, (book) => book.readDateValue);
+    const average = Math.round(d3.mean(matches, (book) => book.pages));
+    const titleList = matches.map((book) => book.title).join(' · ');
+    detail.html('');
+    detail.append('strong').text(selectedSeries);
+    detail
+      .append('span')
+      .text(
+        `${matches.length} books · ${average} average pages · ${d3.utcFormat('%b %Y')(extent[0])}–${d3.utcFormat('%b %Y')(extent[1])}`
+      );
+    detail.append('p').text(titleList);
+  }
+
+  updateHighlight();
+  d3.select(element)
+    .append('p')
+    .attr('class', 'chart-note')
+    .text('Each dot is one book that counts as read. Two manually completed books have no usable date and are omitted: The Hard Thing About Hard Things and Good to Great. Page count is edition-dependent.');
+}
+
+function renderDailyPages() {
+  const element = document.querySelector('#pages-per-day');
+  if (!element) return;
+
+  clear(element);
+  const paceBooks = readingHistory
+    .filter((book) => book.startDate && book.readDate && book.pages)
+    .map((book) => {
+      const start = d3.utcParse('%Y-%m-%d')(book.startDate);
+      const recordedEnd = d3.utcParse('%Y-%m-%d')(book.readDate);
+      return { ...book, start, end: recordedEnd < start ? start : recordedEnd };
+    });
+  const firstDate = d3.min(paceBooks, (book) => book.start);
+  const lastDate = d3.max(paceBooks, (book) => book.end);
+  const daily = d3.utcDays(firstDate, d3.utcDay.offset(lastDate, 1)).map((date) => ({
+    date,
+    pages: d3.sum(paceBooks, (book) => {
+      if (date < book.start || date > book.end) return 0;
+      const activeDays = d3.utcDay.count(book.start, book.end) + 1;
+      return book.pages / activeDays;
+    })
+  }));
+  daily.forEach((day, index) => {
+    const window = daily.slice(Math.max(0, index - 29), index + 1);
+    day.average = d3.mean(window, (entry) => entry.pages);
+  });
+
+  const width = widthFor(element);
+  const height = width < 480 ? 330 : 390;
+  const margin = { top: 18, right: 18, bottom: 46, left: 54 };
+  const x = d3
+    .scaleUtc()
+    .domain([firstDate, lastDate])
+    .range([margin.left, width - margin.right]);
+  const y = d3
+    .scaleLinear()
+    .domain([0, d3.max(daily, (day) => day.average)])
+    .nice()
+    .range([height - margin.bottom, margin.top]);
+  const svg = appendSvg(
+    element,
+    width,
+    height,
+    'Continuous line showing a 30-day rolling average of estimated pages read per day from May 2020 through June 2026.'
+  );
+
+  svg
+    .append('g')
+    .attr('class', 'chart-grid')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6).tickSize(-(width - margin.left - margin.right)).tickFormat(''))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('g')
+    .attr('transform', `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).ticks(width < 480 ? 4 : d3.utcYear.every(1)).tickFormat(d3.utcFormat('%Y')))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('g')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('text')
+    .attr('class', 'axis-label')
+    .attr('x', margin.left)
+    .attr('y', 11)
+    .text('Estimated pages/day');
+
+  const line = d3
+    .line()
+    .x((day) => x(day.date))
+    .y((day) => y(day.average))
+    .curve(d3.curveMonotoneX);
+  svg
+    .append('path')
+    .datum(daily)
+    .attr('class', 'pace-line')
+    .attr('d', line);
+
+  const overall = d3.mean(daily, (day) => day.pages);
+  d3.select(element)
+    .append('p')
+    .attr('class', 'series-detail pace-summary')
+    .html(`<strong>${overall.toFixed(1)} pages/day overall</strong><span>30-day rolling average shown above</span>`);
+  d3.select(element)
+    .append('p')
+    .attr('class', 'chart-note')
+    .text('Estimate, not observed daily activity: each book’s pages are spread evenly across its inclusive Started Reading → chart-date interval, overlapping books are added, and zero-reading gaps stay in the timeline. Covers 96 of 99 read books; two are undated and Abundance has no start date. One reversed source interval is treated as a same-day read.');
 }
 
 function renderCompletionCadence() {
@@ -336,6 +569,8 @@ function renderCompletionCadence() {
 function render() {
   renderBooksByYear();
   renderAveragePages();
+  renderBookScatter();
+  renderDailyPages();
   renderCompletionCadence();
 }
 

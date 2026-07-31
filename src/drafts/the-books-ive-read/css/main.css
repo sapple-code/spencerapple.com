@@ -64,6 +64,79 @@
   fill: #777;
 }
 
+.reading-chart .axis-label {
+  font-weight: 700;
+}
+
+.reading-chart .chart-grid line {
+  stroke: #e8e8e8;
+}
+
+.reading-chart .chart-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 0.8em;
+  margin: 0 0 0.8em;
+}
+
+.reading-chart .chart-controls label {
+  font-weight: 700;
+}
+
+.reading-chart .series-select {
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  color: #171717;
+  font: inherit;
+  max-width: 100%;
+  padding: 0.35em 2em 0.35em 0.5em;
+}
+
+.reading-chart .book-dot {
+  opacity: 0.82;
+  transition: opacity 140ms ease, r 140ms ease;
+}
+
+.reading-chart .book-dot.is-muted {
+  opacity: 0.1;
+}
+
+.reading-chart .book-dot.is-highlighted {
+  opacity: 1;
+  stroke: #171717;
+  stroke-width: 1.5px;
+}
+
+.reading-chart .series-detail {
+  background: #f3f6f8;
+  border-left: 4px solid #4e79a7;
+  margin: 0.75em 0 0;
+  padding: 0.7em 0.85em;
+}
+
+.reading-chart .series-detail strong,
+.reading-chart .series-detail span {
+  display: block;
+}
+
+.reading-chart .series-detail p {
+  margin: 0.45em 0 0;
+}
+
+.reading-chart .pace-line {
+  fill: none;
+  stroke: #4e79a7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5px;
+}
+
+.reading-chart .pace-summary {
+  margin-top: 0.5em;
+}
+
 @media (max-width: 43.74em) {
   .reading-chart text {
     font-size: 11px;

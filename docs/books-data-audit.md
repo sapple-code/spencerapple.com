@@ -88,11 +88,12 @@ mean no recorded finish/activity proxy, not necessarily no reading.
 - `Livesuit` starts on 2025-03-10 but finishes on 2025-03-09.
 - Four read books share 2023-12-03 as a finish date, suggesting a reconciliation
   date rather than four independently exact completions.
-- `Smart Money` lacks author, genre, page count, and a finish/activity date; its
-  start date is the only available chart proxy.
+- `Smart Money` uses its start date as the only available chart proxy. Its full
+  title, authors, ISBN, and page count were later resolved from the Kindle ASIN
+  and publisher metadata.
 - `The Power Broker` appears twice in the broader sheet with the same ISBN.
-- Page-count coverage is uneven by genre and edition, so the average-page chart
-  must show `known / total` sample sizes.
+- Page count is edition-dependent. All 99 read books now have a value, but
+  comparisons should retain that caveat.
 - Format actually consumed is not a dedicated field. Recommendation Source
   sometimes mentions Libby or Kindle, but it cannot support a reliable
   Kindle-versus-audiobook comparison.
@@ -103,7 +104,11 @@ mean no recorded finish/activity proxy, not necessarily no reading.
    as read and disclosing the date hierarchy.
 2. Horizontal average-page bars by genre, showing average and known-page
    sample size over the genre total.
-3. A year-by-month cadence heatmap, paired with median and longest-gap metrics.
+3. Date × page-count scatterplot, colored by genre, with an interactive series
+   highlighter and selected-title detail.
+4. Continuous 30-day rolling line of estimated pages per day, derived by
+   distributing each book's pages across its recorded reading interval.
+5. A year-by-month cadence heatmap, paired with median and longest-gap metrics.
 
 The generated post data lives in
 `src/drafts/the-books-ive-read/data/reading-history.json`; the browser chart
@@ -126,7 +131,7 @@ The first metadata cleanup made these verified changes:
   Command`.
 - Marked `The Hard Thing About Hard Things` and `Good to Great` completed because both rows explicitly said `Read whole book`.
 
-Current missing counts across 289 titled rows:
+Missing counts immediately after that pass, across 289 titled rows:
 
 - Author: 2
 - ISBN-13: 157
@@ -145,6 +150,29 @@ edition, while the imported Kindle page count is an ebook “print length.”
 Combining an arbitrary print ISBN with the Kindle count would create
 edition-inconsistent records. The next import should retain ASIN/format, or the
 sheet should explicitly choose a canonical print-edition policy.
+
+## 2026-07-31 read-book page-count pass
+
+The visualization pass filled the 51 remaining page counts among books where
+`Counts as Read = Yes`:
+
+- 50 use the `Print length` exposed by the exact Kindle ASIN already recorded
+  in the sheet.
+- `Good to Great`, which has no ASIN or ISBN in the sheet, uses the 300-page
+  original hardcover edition cataloged by Open Library (ISBN 9780066620992).
+- `Smart Money` was resolved from ASIN `B0DJF9CZ2R` as *Smart Money: How Digital
+  Currencies Will Shape the New World Order* by Brunello Rosa and Casey Larsen;
+  Bloomsbury publisher metadata supplied the ebook ISBN.
+
+Result: page-count coverage is now 99 / 99 for the read-book analysis. Across
+all 289 titled spreadsheet rows, 112 page counts remain missing because those
+recommendation, stopped, inactive, and currently reading rows are outside this
+charting pass. Author coverage is 289 / 289.
+
+The daily pace chart is deliberately labeled as an estimate. It spreads a
+book's pages evenly from `Started Reading` through its chart date, includes
+zero-day gaps, and adds overlapping intervals. It must not be described as
+observed Kindle pages per calendar day.
 
 ## 2026-07-27 pre-classification chart snapshot
 

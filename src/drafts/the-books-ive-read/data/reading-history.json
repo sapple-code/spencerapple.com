@@ -7,7 +7,10 @@
     "readDate": "2022-01-27",
     "dateSource": "Finished Reading",
     "pages": 464,
-    "genre": "Science, history & society"
+    "genre": "Science, history & society",
+    "startDate": "2021-11-20",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 44,
@@ -16,8 +19,11 @@
     "outcome": "Completed",
     "readDate": "2024-12-08",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Work & technology"
+    "pages": 289,
+    "genre": "Work & technology",
+    "startDate": "2024-12-02",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 63,
@@ -27,7 +33,10 @@
     "readDate": "2024-03-01",
     "dateSource": "Last Activity",
     "pages": 229,
-    "genre": "Science, history & society"
+    "genre": "Science, history & society",
+    "startDate": "2023-09-09",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 65,
@@ -36,8 +45,11 @@
     "outcome": "Completed",
     "readDate": "2021-03-17",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science, history & society"
+    "pages": 252,
+    "genre": "Science, history & society",
+    "startDate": "2021-02-10",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 82,
@@ -47,7 +59,10 @@
     "readDate": "2021-12-08",
     "dateSource": "Finished Reading",
     "pages": 512,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2021-11-28",
+    "series": "The Broken Earth",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 84,
@@ -56,8 +71,11 @@
     "outcome": "Completed",
     "readDate": "2025-05-26",
     "dateSource": "Started Reading",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 354,
+    "genre": "Science fiction",
+    "startDate": "2025-05-26",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 87,
@@ -66,8 +84,11 @@
     "outcome": "Completed",
     "readDate": "2025-11-09",
     "dateSource": "Started Reading",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 371,
+    "genre": "Science fiction",
+    "startDate": "2025-11-09",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 95,
@@ -77,17 +98,23 @@
     "readDate": "2022-05-06",
     "dateSource": "Finished Reading",
     "pages": 1006,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-03-17",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 121,
-    "title": "Smart Money",
-    "author": null,
+    "title": "Smart Money: How Digital Currencies Will Shape the New World Order",
+    "author": "Brunello Rosa, Casey Larsen",
     "outcome": "Completed",
     "readDate": "2025-04-13",
     "dateSource": "Started Reading",
-    "pages": null,
-    "genre": "Unclassified"
+    "pages": 350,
+    "genre": "Science, history & society",
+    "startDate": "2025-04-13",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 139,
@@ -97,7 +124,10 @@
     "readDate": null,
     "dateSource": null,
     "pages": 289,
-    "genre": "Work & technology"
+    "genre": "Work & technology",
+    "startDate": null,
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 140,
@@ -106,8 +136,11 @@
     "outcome": "Completed",
     "readDate": null,
     "dateSource": null,
-    "pages": null,
-    "genre": "Work & technology"
+    "pages": 300,
+    "genre": "Work & technology",
+    "startDate": null,
+    "series": null,
+    "pageSource": "Open Library original hardcover"
   },
   {
     "sheetRow": 170,
@@ -117,7 +150,10 @@
     "readDate": "2020-05-21",
     "dateSource": "Last Activity",
     "pages": 381,
-    "genre": "Science, history & society"
+    "genre": "Science, history & society",
+    "startDate": "2020-05-07",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 171,
@@ -126,8 +162,11 @@
     "outcome": "Completed",
     "readDate": "2020-06-15",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 390,
+    "genre": "Fantasy",
+    "startDate": "2020-05-29",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 172,
@@ -136,8 +175,11 @@
     "outcome": "Completed",
     "readDate": "2020-06-24",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Work & technology"
+    "pages": 164,
+    "genre": "Work & technology",
+    "startDate": "2020-05-30",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 173,
@@ -146,8 +188,11 @@
     "outcome": "Completed",
     "readDate": "2020-07-19",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science, history & society"
+    "pages": 358,
+    "genre": "Science, history & society",
+    "startDate": "2020-06-21",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 174,
@@ -157,7 +202,10 @@
     "readDate": "2020-09-09",
     "dateSource": "Finished Reading",
     "pages": 352,
-    "genre": "Literary & crime"
+    "genre": "Literary & crime",
+    "startDate": "2020-07-30",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 176,
@@ -166,8 +214,11 @@
     "outcome": "Completed",
     "readDate": "2020-10-13",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science, history & society"
+    "pages": 369,
+    "genre": "Science, history & society",
+    "startDate": "2020-09-19",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 177,
@@ -176,8 +227,11 @@
     "outcome": "Completed",
     "readDate": "2021-03-08",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 404,
+    "genre": "Science fiction",
+    "startDate": "2021-03-03",
+    "series": "Nexus Trilogy",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 178,
@@ -186,8 +240,11 @@
     "outcome": "Completed",
     "readDate": "2021-03-17",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 464,
+    "genre": "Science fiction",
+    "startDate": "2021-03-09",
+    "series": "Nexus Trilogy",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 179,
@@ -196,8 +253,11 @@
     "outcome": "Completed",
     "readDate": "2021-03-29",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 840,
+    "genre": "Science fiction",
+    "startDate": "2021-03-17",
+    "series": "Nexus Trilogy",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 180,
@@ -206,8 +266,11 @@
     "outcome": "Completed",
     "readDate": "2021-04-22",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Health, family & memoir"
+    "pages": 297,
+    "genre": "Health, family & memoir",
+    "startDate": "2021-03-24",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 181,
@@ -217,7 +280,10 @@
     "readDate": "2021-09-08",
     "dateSource": "Finished Reading",
     "pages": 416,
-    "genre": "Science, history & society"
+    "genre": "Science, history & society",
+    "startDate": "2021-08-15",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 182,
@@ -226,8 +292,11 @@
     "outcome": "Completed",
     "readDate": "2021-10-20",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Literary & crime"
+    "pages": 353,
+    "genre": "Literary & crime",
+    "startDate": "2021-09-23",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 183,
@@ -237,7 +306,10 @@
     "readDate": "2021-12-17",
     "dateSource": "Finished Reading",
     "pages": 410,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2021-12-09",
+    "series": "The Broken Earth",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 184,
@@ -247,7 +319,10 @@
     "readDate": "2021-12-29",
     "dateSource": "Finished Reading",
     "pages": 416,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2021-12-17",
+    "series": "The Broken Earth",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 185,
@@ -256,8 +331,11 @@
     "outcome": "Completed",
     "readDate": "2022-02-19",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Literary & crime"
+    "pages": 274,
+    "genre": "Literary & crime",
+    "startDate": "2022-01-29",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 186,
@@ -267,7 +345,10 @@
     "readDate": "2022-03-17",
     "dateSource": "Finished Reading",
     "pages": 368,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2022-03-01",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 187,
@@ -276,8 +357,11 @@
     "outcome": "Completed",
     "readDate": "2022-04-09",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Work & technology"
+    "pages": 251,
+    "genre": "Work & technology",
+    "startDate": "2022-03-22",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 188,
@@ -287,7 +371,10 @@
     "readDate": "2022-03-24",
     "dateSource": "Finished Reading",
     "pages": 256,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2022-03-24",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 189,
@@ -297,7 +384,10 @@
     "readDate": "2022-05-25",
     "dateSource": "Finished Reading",
     "pages": 528,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2022-05-08",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 190,
@@ -306,8 +396,11 @@
     "outcome": "Completed",
     "readDate": "2022-06-12",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 448,
+    "genre": "Fantasy",
+    "startDate": "2022-05-23",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 192,
@@ -317,7 +410,10 @@
     "readDate": "2022-06-20",
     "dateSource": "Finished Reading",
     "pages": 752,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-06-12",
+    "series": "Gentleman Bastard",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 194,
@@ -327,7 +423,10 @@
     "readDate": "2022-08-13",
     "dateSource": "Finished Reading",
     "pages": 640,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-07-01",
+    "series": "Gentleman Bastard",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 195,
@@ -337,7 +436,10 @@
     "readDate": "2022-08-28",
     "dateSource": "Finished Reading",
     "pages": 448,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-08-14",
+    "series": "Farseer Trilogy",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 196,
@@ -347,7 +449,10 @@
     "readDate": "2022-09-14",
     "dateSource": "Finished Reading",
     "pages": 688,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-08-28",
+    "series": "Farseer Trilogy",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 197,
@@ -357,7 +462,10 @@
     "readDate": "2022-10-11",
     "dateSource": "Finished Reading",
     "pages": 864,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-09-14",
+    "series": "Farseer Trilogy",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 198,
@@ -367,7 +475,10 @@
     "readDate": "2022-10-29",
     "dateSource": "Finished Reading",
     "pages": 880,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-10-11",
+    "series": "Liveship Traders",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 199,
@@ -377,7 +488,10 @@
     "readDate": "2022-11-06",
     "dateSource": "Finished Reading",
     "pages": 928,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2022-10-29",
+    "series": "Liveship Traders",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 200,
@@ -386,8 +500,11 @@
     "outcome": "Completed",
     "readDate": "2022-12-05",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 816,
+    "genre": "Fantasy",
+    "startDate": "2022-11-06",
+    "series": "Liveship Traders",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 201,
@@ -397,7 +514,10 @@
     "readDate": "2023-01-28",
     "dateSource": "Finished Reading",
     "pages": 640,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2023-01-12",
+    "series": "Children of Time",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 202,
@@ -406,8 +526,11 @@
     "outcome": "Completed",
     "readDate": "2023-02-13",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 576,
+    "genre": "Science fiction",
+    "startDate": "2023-01-30",
+    "series": "Children of Time",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 203,
@@ -417,7 +540,10 @@
     "readDate": "2024-01-13",
     "dateSource": "Finished Reading",
     "pages": 160,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2023-02-15",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 204,
@@ -426,8 +552,11 @@
     "outcome": "Completed",
     "readDate": "2023-02-23",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 509,
+    "genre": "Fantasy",
+    "startDate": "2023-02-17",
+    "series": "The First Law",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 205,
@@ -437,7 +566,10 @@
     "readDate": "2023-03-06",
     "dateSource": "Finished Reading",
     "pages": 560,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2023-02-23",
+    "series": "The First Law",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 206,
@@ -446,8 +578,11 @@
     "outcome": "Completed",
     "readDate": "2023-03-27",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 642,
+    "genre": "Fantasy",
+    "startDate": "2023-03-06",
+    "series": "The First Law",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 208,
@@ -457,7 +592,10 @@
     "readDate": "2024-01-13",
     "dateSource": "Last Activity",
     "pages": 329,
-    "genre": "Health, family & memoir"
+    "genre": "Health, family & memoir",
+    "startDate": "2023-05-04",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 209,
@@ -467,7 +605,10 @@
     "readDate": "2023-09-09",
     "dateSource": "Finished Reading",
     "pages": 352,
-    "genre": "Science, history & society"
+    "genre": "Science, history & society",
+    "startDate": "2023-06-03",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 210,
@@ -477,7 +618,10 @@
     "readDate": "2023-12-03",
     "dateSource": "Finished Reading",
     "pages": 384,
-    "genre": "Science, history & society"
+    "genre": "Science, history & society",
+    "startDate": "2023-06-19",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 211,
@@ -486,8 +630,11 @@
     "outcome": "Completed",
     "readDate": "2025-03-08",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Health, family & memoir"
+    "pages": 352,
+    "genre": "Health, family & memoir",
+    "startDate": "2023-09-23",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 212,
@@ -497,7 +644,10 @@
     "readDate": "2023-12-03",
     "dateSource": "Finished Reading",
     "pages": 200,
-    "genre": "Work & technology"
+    "genre": "Work & technology",
+    "startDate": "2023-09-23",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 213,
@@ -507,7 +657,10 @@
     "readDate": "2023-11-02",
     "dateSource": "Finished Reading",
     "pages": 368,
-    "genre": "Health, family & memoir"
+    "genre": "Health, family & memoir",
+    "startDate": "2023-10-11",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 214,
@@ -517,7 +670,10 @@
     "readDate": "2023-12-03",
     "dateSource": "Finished Reading",
     "pages": 240,
-    "genre": "Health, family & memoir"
+    "genre": "Health, family & memoir",
+    "startDate": "2023-10-27",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 215,
@@ -526,8 +682,11 @@
     "outcome": "Completed",
     "readDate": "2023-11-21",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science, history & society"
+    "pages": 284,
+    "genre": "Science, history & society",
+    "startDate": "2023-10-29",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 216,
@@ -537,7 +696,10 @@
     "readDate": "2023-12-03",
     "dateSource": "Finished Reading",
     "pages": 400,
-    "genre": "Science, history & society"
+    "genre": "Science, history & society",
+    "startDate": "2023-11-05",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 217,
@@ -547,7 +709,10 @@
     "readDate": "2023-11-20",
     "dateSource": "Finished Reading",
     "pages": 416,
-    "genre": "Literary & crime"
+    "genre": "Literary & crime",
+    "startDate": "2023-11-05",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 218,
@@ -556,8 +721,11 @@
     "outcome": "Completed",
     "readDate": "2023-12-16",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 992,
+    "genre": "Science fiction",
+    "startDate": "2023-11-25",
+    "series": "Commonwealth Saga",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 219,
@@ -567,7 +735,10 @@
     "readDate": "2023-12-31",
     "dateSource": "Finished Reading",
     "pages": 1024,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2023-12-16",
+    "series": "Commonwealth Saga",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 220,
@@ -576,8 +747,11 @@
     "outcome": "Completed",
     "readDate": "2024-02-21",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Work & technology"
+    "pages": 138,
+    "genre": "Work & technology",
+    "startDate": "2024-01-18",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 221,
@@ -586,8 +760,11 @@
     "outcome": "Partial",
     "readDate": "2024-02-01",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Health, family & memoir"
+    "pages": 283,
+    "genre": "Health, family & memoir",
+    "startDate": "2024-01-30",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 222,
@@ -596,8 +773,11 @@
     "outcome": "Partial",
     "readDate": "2024-04-07",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Work & technology"
+    "pages": 304,
+    "genre": "Work & technology",
+    "startDate": "2024-03-18",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 223,
@@ -607,7 +787,10 @@
     "readDate": "2024-04-14",
     "dateSource": "Finished Reading",
     "pages": 352,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2024-04-09",
+    "series": "Earthseed",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 225,
@@ -617,7 +800,10 @@
     "readDate": "2024-04-25",
     "dateSource": "Finished Reading",
     "pages": 448,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2024-04-16",
+    "series": "Earthseed",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 226,
@@ -626,8 +812,11 @@
     "outcome": "Partial",
     "readDate": "2024-10-06",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Health, family & memoir"
+    "pages": 315,
+    "genre": "Health, family & memoir",
+    "startDate": "2024-04-26",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 227,
@@ -637,7 +826,10 @@
     "readDate": "2024-06-19",
     "dateSource": "Finished Reading",
     "pages": 688,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2024-05-04",
+    "series": "Sun Eater",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 228,
@@ -647,7 +839,10 @@
     "readDate": "2024-07-14",
     "dateSource": "Finished Reading",
     "pages": 800,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2024-06-20",
+    "series": "Sun Eater",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 229,
@@ -657,7 +852,10 @@
     "readDate": "2024-08-09",
     "dateSource": "Finished Reading",
     "pages": 752,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2024-07-14",
+    "series": "Sun Eater",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 230,
@@ -666,8 +864,11 @@
     "outcome": "Completed",
     "readDate": "2024-09-12",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 723,
+    "genre": "Science fiction",
+    "startDate": "2024-08-09",
+    "series": "Sun Eater",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 231,
@@ -676,8 +877,11 @@
     "outcome": "Completed",
     "readDate": "2024-11-29",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 788,
+    "genre": "Science fiction",
+    "startDate": "2024-11-04",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 233,
@@ -686,8 +890,11 @@
     "outcome": "Completed",
     "readDate": "2024-12-21",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 571,
+    "genre": "Science fiction",
+    "startDate": "2024-12-09",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 235,
@@ -696,8 +903,11 @@
     "outcome": "Completed",
     "readDate": "2025-01-01",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 324,
+    "genre": "Science fiction",
+    "startDate": "2024-12-22",
+    "series": "Rifters",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 236,
@@ -706,8 +916,11 @@
     "outcome": "Completed",
     "readDate": "2025-02-04",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 573,
+    "genre": "Science fiction",
+    "startDate": "2025-01-01",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 238,
@@ -716,8 +929,11 @@
     "outcome": "Completed",
     "readDate": "2025-02-22",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 388,
+    "genre": "Science fiction",
+    "startDate": "2025-02-09",
+    "series": "Rifters",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 239,
@@ -726,8 +942,11 @@
     "outcome": "Completed",
     "readDate": "2025-03-08",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 543,
+    "genre": "Science fiction",
+    "startDate": "2025-02-22",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 241,
@@ -736,8 +955,11 @@
     "outcome": "Completed",
     "readDate": "2025-03-10",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 60,
+    "genre": "Science fiction",
+    "startDate": "2025-03-09",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 242,
@@ -746,8 +968,11 @@
     "outcome": "Completed",
     "readDate": "2025-03-11",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 72,
+    "genre": "Science fiction",
+    "startDate": "2025-03-10",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 243,
@@ -757,7 +982,10 @@
     "readDate": "2025-03-09",
     "dateSource": "Finished Reading",
     "pages": 96,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2025-03-10",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 244,
@@ -767,7 +995,10 @@
     "readDate": "2025-04-01",
     "dateSource": "Last Activity",
     "pages": 550,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2025-03-11",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 245,
@@ -776,8 +1007,11 @@
     "outcome": "Completed",
     "readDate": "2025-04-12",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 591,
+    "genre": "Science fiction",
+    "startDate": "2025-04-01",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 248,
@@ -786,8 +1020,11 @@
     "outcome": "Completed",
     "readDate": "2025-05-09",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 535,
+    "genre": "Science fiction",
+    "startDate": "2025-04-18",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 249,
@@ -796,8 +1033,11 @@
     "outcome": "Completed",
     "readDate": "2025-04-25",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Health, family & memoir"
+    "pages": 773,
+    "genre": "Health, family & memoir",
+    "startDate": "2025-04-20",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 250,
@@ -807,7 +1047,10 @@
     "readDate": "2025-06-06",
     "dateSource": "Finished Reading",
     "pages": 544,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2025-05-09",
+    "series": "The Expanse",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 251,
@@ -816,8 +1059,11 @@
     "outcome": "Completed",
     "readDate": "2025-07-04",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science, history & society"
+    "pages": 308,
+    "genre": "Science, history & society",
+    "startDate": "2025-06-06",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 252,
@@ -827,7 +1073,10 @@
     "readDate": "2025-07-22",
     "dateSource": "Last Activity",
     "pages": 560,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2025-07-04",
+    "series": "The Expanse",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 253,
@@ -836,8 +1085,11 @@
     "outcome": "Completed",
     "readDate": "2025-08-04",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 568,
+    "genre": "Science fiction",
+    "startDate": "2025-07-22",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 254,
@@ -846,8 +1098,11 @@
     "outcome": "Completed",
     "readDate": "2025-08-11",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 78,
+    "genre": "Science fiction",
+    "startDate": "2025-08-04",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 255,
@@ -856,8 +1111,11 @@
     "outcome": "Completed",
     "readDate": "2025-08-17",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 73,
+    "genre": "Science fiction",
+    "startDate": "2025-08-11",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 256,
@@ -866,8 +1124,11 @@
     "outcome": "Completed",
     "readDate": "2025-09-26",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 510,
+    "genre": "Science fiction",
+    "startDate": "2025-08-25",
+    "series": "The Expanse",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 257,
@@ -876,8 +1137,11 @@
     "outcome": "Completed",
     "readDate": "2025-10-17",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science, history & society"
+    "pages": 297,
+    "genre": "Science, history & society",
+    "startDate": null,
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 258,
@@ -886,8 +1150,11 @@
     "outcome": "Completed",
     "readDate": "2025-11-07",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Science fiction"
+    "pages": 371,
+    "genre": "Science fiction",
+    "startDate": "2025-10-17",
+    "series": null,
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 259,
@@ -896,8 +1163,11 @@
     "outcome": "Completed",
     "readDate": "2025-12-12",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 446,
+    "genre": "Fantasy",
+    "startDate": "2025-11-29",
+    "series": "Dungeon Crawler Carl",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 260,
@@ -906,8 +1176,11 @@
     "outcome": "Completed",
     "readDate": "2025-12-06",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 386,
+    "genre": "Fantasy",
+    "startDate": "2025-12-03",
+    "series": "Dungeon Crawler Carl",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 261,
@@ -916,8 +1189,11 @@
     "outcome": "Completed",
     "readDate": "2025-12-12",
     "dateSource": "Last Activity",
-    "pages": null,
-    "genre": "Fantasy"
+    "pages": 534,
+    "genre": "Fantasy",
+    "startDate": "2025-12-06",
+    "series": "Dungeon Crawler Carl",
+    "pageSource": "Amazon Kindle ASIN"
   },
   {
     "sheetRow": 262,
@@ -927,7 +1203,10 @@
     "readDate": "2025-12-24",
     "dateSource": "Finished Reading",
     "pages": 704,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2025-12-12",
+    "series": "Dungeon Crawler Carl",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 263,
@@ -937,7 +1216,10 @@
     "readDate": "2025-12-28",
     "dateSource": "Finished Reading",
     "pages": 768,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2025-12-25",
+    "series": "Dungeon Crawler Carl",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 264,
@@ -947,7 +1229,10 @@
     "readDate": "2026-01-06",
     "dateSource": "Finished Reading",
     "pages": 736,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2025-12-29",
+    "series": "Dungeon Crawler Carl",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 265,
@@ -957,7 +1242,10 @@
     "readDate": "2026-01-21",
     "dateSource": "Finished Reading",
     "pages": 880,
-    "genre": "Fantasy"
+    "genre": "Fantasy",
+    "startDate": "2026-01-06",
+    "series": "Dungeon Crawler Carl",
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 266,
@@ -967,7 +1255,10 @@
     "readDate": "2026-02-08",
     "dateSource": "Last Activity",
     "pages": 336,
-    "genre": "Work & technology"
+    "genre": "Work & technology",
+    "startDate": "2026-02-07",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 270,
@@ -977,7 +1268,10 @@
     "readDate": "2026-04-29",
     "dateSource": "Finished Reading",
     "pages": 256,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2026-04-24",
+    "series": null,
+    "pageSource": "Google Sheet"
   },
   {
     "sheetRow": 272,
@@ -987,6 +1281,9 @@
     "readDate": "2026-06-25",
     "dateSource": "Finished Reading",
     "pages": 432,
-    "genre": "Science fiction"
+    "genre": "Science fiction",
+    "startDate": "2026-05-17",
+    "series": null,
+    "pageSource": "Google Sheet"
   }
 ]

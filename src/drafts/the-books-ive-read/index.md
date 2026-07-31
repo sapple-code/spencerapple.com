@@ -77,16 +77,59 @@ modifyDate: 2026-07-28 15:00
 <div id="average-pages-by-genre" class="reading-chart"></div>
 
 - Chart definition:
-  - 48 of 99 books have page counts.
-  - Each bar must show `known page counts / genre total`.
-  - Do not compare genres as though coverage were complete or random.
+  - All 99 books now have page counts.
+  - 48 values were already in the sheet; 50 were matched to the recorded Kindle
+    ASIN; `Good to Great` uses the original hardcover edition.
+  - Treat page count as edition-dependent, not an intrinsic property of a title.
 - Observation prompts:
-  - Known fantasy books average about 700 pages (`16/24`).
-  - Known science-fiction books average about 497 pages (`17/40`).
+  - Fantasy books average about 640 pages (`24/24`).
+  - Science-fiction books average about 481 pages (`40/40`).
   - The fantasy result is driven by long series and several 700–1,000-page
     volumes.
 - Interpretation prompt: `[book count understates the time represented by long
   fantasy volumes]`.
+
+### Every book by date and length
+
+<div id="books-page-scatter" class="reading-chart"></div>
+
+- Chart definition:
+  - One dot per dateable book, with chart date on the x-axis and pages on the
+    y-axis.
+  - Color encodes broad genre.
+  - Series selector highlights related dots and updates the book list below.
+  - 97 of 99 read books have a usable date; the two manually completed,
+    undated books are named below the chart rather than assigned an invented
+    date.
+- Observation prompts:
+  - The Commonwealth Saga pair is the longest selected series on average at
+    about 1,008 pages per book.
+  - The Sun Eater and Dungeon Crawler Carl runs form distinct high-page clusters.
+  - The Expanse mixes full novels and short novellas, so its selected dots span
+    60–591 pages.
+- Interpretation prompt: `[series make the shifts between short and very long
+  books easier to see than yearly counts alone]`.
+
+### Estimated pages read per day
+
+<div id="pages-per-day" class="reading-chart"></div>
+
+- Chart definition:
+  - Continuous 30-day rolling average of estimated pages per day.
+  - For each book, spread its pages evenly across the inclusive interval from
+    `Started Reading` to its chart date; add overlapping books and retain zero
+    days.
+  - Covers 96 of 99 read books: two are undated and `Abundance` has no start
+    date.
+  - This is a pace estimate from book-level intervals, not daily Kindle
+    telemetry.
+- Observation prompts:
+  - Peaks should be read as dense clusters of completed pages, not proof of the
+    exact number read on any one date.
+  - Long-running, partially read books flatten the estimate because their pages
+    are distributed across the full interval.
+- Interpretation prompt: `[what the smoothed pace says about bursts, gaps, and
+  returning to the bedtime habit]`.
 
 ### Consistency, clusters, and gaps
 
