@@ -110,17 +110,38 @@ modifyDate: 2026-07-28 15:00
 - Interpretation prompt: `[series make the shifts between short and very long
   books easier to see than yearly counts alone]`.
 
+### Page count versus Kindle page flips
+
+<div id="pages-vs-page-flips" class="reading-chart"></div>
+
+- Chart definition:
+  - One dot for each of the 91 read books with both an edition page count and a
+    Kindle page-flip count.
+  - X-axis is edition pages; y-axis is raw Kindle page-flip events.
+  - Dashed line is an ordinary least-squares trend, not a page conversion.
+- Observation prompts:
+  - Page count and page flips have a strong positive relationship (`r = 0.83`).
+  - Across the overlapping books, the aggregate ratio is about 2.67 flips per
+    edition page.
+  - The remaining variation can reflect edition layout, navigation, revisiting,
+    partial reading, or differences in how Kindle recorded the events.
+- Interpretation prompt: `[page flips corroborate the broad length pattern but
+  are not interchangeable with printed pages]`.
+
 ### Estimated pages read per day
 
 <div id="pages-per-day" class="reading-chart"></div>
 
 - Chart definition:
-  - Continuous 30-day rolling average of estimated pages per day.
+  - Continuous 30-day rolling averages of estimated edition pages and a
+    flip-derived page equivalent.
   - For each book, spread its pages evenly across the inclusive interval from
     `Started Reading` to its chart date; add overlapping books and retain zero
     days.
+  - Convert the comparison line using the aggregate 2.67 flips-per-page ratio
+    from the 91 books with both measures.
   - Covers 96 of 99 read books: two are undated and `Abundance` has no start
-    date.
+    date. The flip-derived line covers 90 timed books.
   - This is a pace estimate from book-level intervals, not daily Kindle
     telemetry.
 - Observation prompts:

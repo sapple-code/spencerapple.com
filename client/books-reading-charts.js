@@ -373,11 +373,130 @@ function renderBookScatter() {
     .text('Each dot is one book that counts as read. Two manually completed books have no usable date and are omitted: The Hard Thing About Hard Things and Good to Great. Page count is edition-dependent.');
 }
 
+function renderPagesVsFlips() {
+  const element = document.querySelector('#pages-vs-page-flips');
+  if (!element) return;
+
+  clear(element);
+  appendLegend(element);
+  const matches = readingHistory.filter((book) => book.pages && book.pageFlips);
+  const pageMean = d3.mean(matches, (book) => book.pages);
+  const flipMean = d3.mean(matches, (book) => book.pageFlips);
+  const covariance = d3.sum(
+    matches,
+    (book) => (book.pages - pageMean) * (book.pageFlips - flipMean)
+  );
+  const pageVariance = d3.sum(
+    matches,
+    (book) => (book.pages - pageMean) ** 2
+  );
+  const flipVariance = d3.sum(
+    matches,
+    (book) => (book.pageFlips - flipMean) ** 2
+  );
+  const slope = covariance / pageVariance;
+  const intercept = flipMean - slope * pageMean;
+  const correlation = covariance / Math.sqrt(pageVariance * flipVariance);
+  const flipsPerPage =
+    d3.sum(matches, (book) => book.pageFlips) /
+    d3.sum(matches, (book) => book.pages);
+
+  const width = widthFor(element);
+  const height = width < 480 ? 350 : 430;
+  const margin = { top: 18, right: 18, bottom: 50, left: 62 };
+  const x = d3
+    .scaleLinear()
+    .domain([0, d3.max(matches, (book) => book.pages)])
+    .nice()
+    .range([margin.left, width - margin.right]);
+  const y = d3
+    .scaleLinear()
+    .domain([0, d3.max(matches, (book) => book.pageFlips)])
+    .nice()
+    .range([height - margin.bottom, margin.top]);
+  const svg = appendSvg(
+    element,
+    width,
+    height,
+    'Scatterplot comparing edition page count with Kindle page flips for 91 books, colored by genre.'
+  );
+
+  svg
+    .append('g')
+    .attr('class', 'chart-grid')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6).tickSize(-(width - margin.left - margin.right)).tickFormat(''))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('g')
+    .attr('transform', `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).ticks(width < 480 ? 4 : 6))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('g')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('~s')))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('text')
+    .attr('class', 'axis-label')
+    .attr('x', margin.left)
+    .attr('y', 11)
+    .text('Kindle page flips');
+  svg
+    .append('text')
+    .attr('class', 'axis-label')
+    .attr('text-anchor', 'end')
+    .attr('x', width - margin.right)
+    .attr('y', height - 8)
+    .text('Edition page count');
+
+  const lineStart = Math.max(0, -intercept / slope);
+  const lineEnd = x.domain()[1];
+  svg
+    .append('line')
+    .attr('class', 'comparison-trend')
+    .attr('x1', x(lineStart))
+    .attr('y1', y(intercept + slope * lineStart))
+    .attr('x2', x(lineEnd))
+    .attr('y2', y(intercept + slope * lineEnd));
+  svg
+    .append('g')
+    .selectAll('circle')
+    .data(matches)
+    .join('circle')
+    .attr('class', 'book-dot')
+    .attr('cx', (book) => x(book.pages))
+    .attr('cy', (book) => y(book.pageFlips))
+    .attr('fill', (book) => colors.get(book.genre))
+    .attr('r', 4.5)
+    .append('title')
+    .text(
+      (book) =>
+        `${book.title}\n${book.pages} pages · ${book.pageFlips.toLocaleString()} page flips · ${(book.pageFlips / book.pages).toFixed(2)} flips/page`
+    );
+
+  d3.select(element)
+    .append('p')
+    .attr('class', 'series-detail comparison-summary')
+    .html(
+      `<strong>Strong relationship: r=${correlation.toFixed(2)}</strong><span>${flipsPerPage.toFixed(2)} Kindle page flips per edition page overall · n=${matches.length}</span>`
+    );
+  d3.select(element)
+    .append('p')
+    .attr('class', 'chart-note')
+    .text('The dashed line is an ordinary least-squares trend, not a conversion rule. Page flips are Kindle interaction events and can include navigation or revisiting; eight read books have no flip count.');
+}
+
 function renderDailyPages() {
   const element = document.querySelector('#pages-per-day');
   if (!element) return;
 
   clear(element);
+  const flipBooks = readingHistory.filter((book) => book.pages && book.pageFlips);
+  const pagesPerFlip =
+    d3.sum(flipBooks, (book) => book.pages) /
+    d3.sum(flipBooks, (book) => book.pageFlips);
   const paceBooks = readingHistory
     .filter((book) => book.startDate && book.readDate && book.pages)
     .map((book) => {
@@ -387,18 +506,41 @@ function renderDailyPages() {
     });
   const firstDate = d3.min(paceBooks, (book) => book.start);
   const lastDate = d3.max(paceBooks, (book) => book.end);
-  const daily = d3.utcDays(firstDate, d3.utcDay.offset(lastDate, 1)).map((date) => ({
-    date,
-    pages: d3.sum(paceBooks, (book) => {
-      if (date < book.start || date > book.end) return 0;
-      const activeDays = d3.utcDay.count(book.start, book.end) + 1;
-      return book.pages / activeDays;
-    })
-  }));
+  const daily = d3.utcDays(firstDate, d3.utcDay.offset(lastDate, 1)).map((date) => {
+    const activeBooks = paceBooks.filter(
+      (book) => date >= book.start && date <= book.end
+    );
+    return {
+      date,
+      pages: d3.sum(activeBooks, (book) => {
+        const activeDays = d3.utcDay.count(book.start, book.end) + 1;
+        return book.pages / activeDays;
+      }),
+      flipEquivalent: d3.sum(
+        activeBooks.filter((book) => book.pageFlips),
+        (book) => {
+          const activeDays = d3.utcDay.count(book.start, book.end) + 1;
+          return (book.pageFlips * pagesPerFlip) / activeDays;
+        }
+      )
+    };
+  });
   daily.forEach((day, index) => {
     const window = daily.slice(Math.max(0, index - 29), index + 1);
     day.average = d3.mean(window, (entry) => entry.pages);
+    day.flipAverage = d3.mean(window, (entry) => entry.flipEquivalent);
   });
+
+  const lineLegend = d3.select(element).append('ul').attr('class', 'legend line-legend');
+  const lineItems = lineLegend
+    .selectAll('li')
+    .data([
+      { label: 'Edition-page estimate', className: 'page-line-swatch' },
+      { label: 'Flip-derived page equivalent', className: 'flip-line-swatch' }
+    ])
+    .join('li');
+  lineItems.append('span').attr('class', (item) => `line-swatch ${item.className}`);
+  lineItems.append('span').text((item) => item.label);
 
   const width = widthFor(element);
   const height = width < 480 ? 330 : 390;
@@ -409,14 +551,14 @@ function renderDailyPages() {
     .range([margin.left, width - margin.right]);
   const y = d3
     .scaleLinear()
-    .domain([0, d3.max(daily, (day) => day.average)])
+    .domain([0, d3.max(daily, (day) => Math.max(day.average, day.flipAverage))])
     .nice()
     .range([height - margin.bottom, margin.top]);
   const svg = appendSvg(
     element,
     width,
     height,
-    'Continuous line showing a 30-day rolling average of estimated pages read per day from May 2020 through June 2026.'
+    'Two continuous lines comparing 30-day rolling averages of edition-page estimates and flip-derived page equivalents from May 2020 through June 2026.'
   );
 
   svg
@@ -440,7 +582,7 @@ function renderDailyPages() {
     .attr('class', 'axis-label')
     .attr('x', margin.left)
     .attr('y', 11)
-    .text('Estimated pages/day');
+    .text('Page equivalents/day');
 
   const line = d3
     .line()
@@ -452,16 +594,27 @@ function renderDailyPages() {
     .datum(daily)
     .attr('class', 'pace-line')
     .attr('d', line);
+  const flipLine = d3
+    .line()
+    .x((day) => x(day.date))
+    .y((day) => y(day.flipAverage))
+    .curve(d3.curveMonotoneX);
+  svg
+    .append('path')
+    .datum(daily)
+    .attr('class', 'flip-pace-line')
+    .attr('d', flipLine);
 
   const overall = d3.mean(daily, (day) => day.pages);
+  const flipOverall = d3.mean(daily, (day) => day.flipEquivalent);
   d3.select(element)
     .append('p')
     .attr('class', 'series-detail pace-summary')
-    .html(`<strong>${overall.toFixed(1)} pages/day overall</strong><span>30-day rolling average shown above</span>`);
+    .html(`<strong>${overall.toFixed(1)} page estimate vs. ${flipOverall.toFixed(1)} flip-derived equivalents/day</strong><span>30-day rolling averages shown above</span>`);
   d3.select(element)
     .append('p')
     .attr('class', 'chart-note')
-    .text('Estimate, not observed daily activity: each book’s pages are spread evenly across its inclusive Started Reading → chart-date interval, overlapping books are added, and zero-reading gaps stay in the timeline. Covers 96 of 99 read books; two are undated and Abundance has no start date. One reversed source interval is treated as a same-day read.');
+    .text(`Estimate, not observed daily activity: each book’s pages or flips are spread evenly across its inclusive Started Reading → chart-date interval, overlapping books are added, and zero-reading gaps stay in the timeline. The flip line converts at ${(1 / pagesPerFlip).toFixed(2)} flips per page, calibrated across 91 books; it covers 90 timed books versus 96 for the page-count line. One reversed source interval is treated as a same-day read.`);
 }
 
 function renderCompletionCadence() {
@@ -570,6 +723,7 @@ function render() {
   renderBooksByYear();
   renderAveragePages();
   renderBookScatter();
+  renderPagesVsFlips();
   renderDailyPages();
   renderCompletionCadence();
 }

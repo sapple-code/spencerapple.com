@@ -108,7 +108,9 @@ mean no recorded finish/activity proxy, not necessarily no reading.
    highlighter and selected-title detail.
 4. Continuous 30-day rolling line of estimated pages per day, derived by
    distributing each book's pages across its recorded reading interval.
-5. A year-by-month cadence heatmap, paired with median and longest-gap metrics.
+5. Edition page count versus Kindle page flips for the 91 books with both
+   measures, plus a flip-derived comparison line on the pace chart.
+6. A year-by-month cadence heatmap, paired with median and longest-gap metrics.
 
 The generated post data lives in
 `src/drafts/the-books-ive-read/data/reading-history.json`; the browser chart
@@ -173,6 +175,12 @@ The daily pace chart is deliberately labeled as an estimate. It spreads a
 book's pages evenly from `Started Reading` through its chart date, includes
 zero-day gaps, and adds overlapping intervals. It must not be described as
 observed Kindle pages per calendar day.
+
+Kindle page flips are available for 91 of the 99 read books. Across those
+books, page count and flips correlate at `r = 0.83`, with an aggregate 2.67
+flips per edition page. The comparison chart keeps raw flips on their own axis;
+the pace overlay uses that aggregate ratio only to put the second line on a
+comparable scale.
 
 ## 2026-07-27 pre-classification chart snapshot
 

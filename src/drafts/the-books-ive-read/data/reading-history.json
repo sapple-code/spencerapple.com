@@ -10,7 +10,8 @@
     "genre": "Science, history & society",
     "startDate": "2021-11-20",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": null
   },
   {
     "sheetRow": 44,
@@ -23,7 +24,8 @@
     "genre": "Work & technology",
     "startDate": "2024-12-02",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 194
   },
   {
     "sheetRow": 63,
@@ -36,7 +38,8 @@
     "genre": "Science, history & society",
     "startDate": "2023-09-09",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 541
   },
   {
     "sheetRow": 65,
@@ -49,7 +52,8 @@
     "genre": "Science, history & society",
     "startDate": "2021-02-10",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 950
   },
   {
     "sheetRow": 82,
@@ -62,7 +66,8 @@
     "genre": "Fantasy",
     "startDate": "2021-11-28",
     "series": "The Broken Earth",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": null
   },
   {
     "sheetRow": 84,
@@ -75,7 +80,8 @@
     "genre": "Science fiction",
     "startDate": "2025-05-26",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": null
   },
   {
     "sheetRow": 87,
@@ -88,7 +94,8 @@
     "genre": "Science fiction",
     "startDate": "2025-11-09",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": null
   },
   {
     "sheetRow": 95,
@@ -101,7 +108,8 @@
     "genre": "Fantasy",
     "startDate": "2022-03-17",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2746
   },
   {
     "sheetRow": 121,
@@ -114,7 +122,8 @@
     "genre": "Science, history & society",
     "startDate": "2025-04-13",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": null
   },
   {
     "sheetRow": 139,
@@ -127,7 +136,8 @@
     "genre": "Work & technology",
     "startDate": null,
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": null
   },
   {
     "sheetRow": 140,
@@ -140,7 +150,8 @@
     "genre": "Work & technology",
     "startDate": null,
     "series": null,
-    "pageSource": "Open Library original hardcover"
+    "pageSource": "Open Library original hardcover",
+    "pageFlips": null
   },
   {
     "sheetRow": 170,
@@ -153,7 +164,8 @@
     "genre": "Science, history & society",
     "startDate": "2020-05-07",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1
   },
   {
     "sheetRow": 171,
@@ -166,7 +178,8 @@
     "genre": "Fantasy",
     "startDate": "2020-05-29",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": null
   },
   {
     "sheetRow": 172,
@@ -179,7 +192,8 @@
     "genre": "Work & technology",
     "startDate": "2020-05-30",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1
   },
   {
     "sheetRow": 173,
@@ -192,7 +206,8 @@
     "genre": "Science, history & society",
     "startDate": "2020-06-21",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 660
   },
   {
     "sheetRow": 174,
@@ -205,7 +220,8 @@
     "genre": "Literary & crime",
     "startDate": "2020-07-30",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 764
   },
   {
     "sheetRow": 176,
@@ -218,7 +234,8 @@
     "genre": "Science, history & society",
     "startDate": "2020-09-19",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1220
   },
   {
     "sheetRow": 177,
@@ -231,7 +248,8 @@
     "genre": "Science fiction",
     "startDate": "2021-03-03",
     "series": "Nexus Trilogy",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1384
   },
   {
     "sheetRow": 178,
@@ -244,7 +262,8 @@
     "genre": "Science fiction",
     "startDate": "2021-03-09",
     "series": "Nexus Trilogy",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1580
   },
   {
     "sheetRow": 179,
@@ -257,7 +276,8 @@
     "genre": "Science fiction",
     "startDate": "2021-03-17",
     "series": "Nexus Trilogy",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 2249
   },
   {
     "sheetRow": 180,
@@ -270,7 +290,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2021-03-24",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 823
   },
   {
     "sheetRow": 181,
@@ -283,7 +304,8 @@
     "genre": "Science, history & society",
     "startDate": "2021-08-15",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1166
   },
   {
     "sheetRow": 182,
@@ -296,7 +318,8 @@
     "genre": "Literary & crime",
     "startDate": "2021-09-23",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1019
   },
   {
     "sheetRow": 183,
@@ -309,7 +332,8 @@
     "genre": "Fantasy",
     "startDate": "2021-12-09",
     "series": "The Broken Earth",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1091
   },
   {
     "sheetRow": 184,
@@ -322,7 +346,8 @@
     "genre": "Fantasy",
     "startDate": "2021-12-17",
     "series": "The Broken Earth",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1139
   },
   {
     "sheetRow": 185,
@@ -335,7 +360,8 @@
     "genre": "Literary & crime",
     "startDate": "2022-01-29",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 660
   },
   {
     "sheetRow": 186,
@@ -348,7 +374,8 @@
     "genre": "Science fiction",
     "startDate": "2022-03-01",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 758
   },
   {
     "sheetRow": 187,
@@ -361,7 +388,8 @@
     "genre": "Work & technology",
     "startDate": "2022-03-22",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 501
   },
   {
     "sheetRow": 188,
@@ -374,7 +402,8 @@
     "genre": "Science fiction",
     "startDate": "2022-03-24",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 50
   },
   {
     "sheetRow": 189,
@@ -387,7 +416,8 @@
     "genre": "Science fiction",
     "startDate": "2022-05-08",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1772
   },
   {
     "sheetRow": 190,
@@ -400,7 +430,8 @@
     "genre": "Fantasy",
     "startDate": "2022-05-23",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1005
   },
   {
     "sheetRow": 192,
@@ -413,7 +444,8 @@
     "genre": "Fantasy",
     "startDate": "2022-06-12",
     "series": "Gentleman Bastard",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1398
   },
   {
     "sheetRow": 194,
@@ -426,7 +458,8 @@
     "genre": "Fantasy",
     "startDate": "2022-07-01",
     "series": "Gentleman Bastard",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1417
   },
   {
     "sheetRow": 195,
@@ -439,7 +472,8 @@
     "genre": "Fantasy",
     "startDate": "2022-08-14",
     "series": "Farseer Trilogy",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1030
   },
   {
     "sheetRow": 196,
@@ -452,7 +486,8 @@
     "genre": "Fantasy",
     "startDate": "2022-08-28",
     "series": "Farseer Trilogy",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1589
   },
   {
     "sheetRow": 197,
@@ -465,7 +500,8 @@
     "genre": "Fantasy",
     "startDate": "2022-09-14",
     "series": "Farseer Trilogy",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2285
   },
   {
     "sheetRow": 198,
@@ -478,7 +514,8 @@
     "genre": "Fantasy",
     "startDate": "2022-10-11",
     "series": "Liveship Traders",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2340
   },
   {
     "sheetRow": 199,
@@ -491,7 +528,8 @@
     "genre": "Fantasy",
     "startDate": "2022-10-29",
     "series": "Liveship Traders",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2276
   },
   {
     "sheetRow": 200,
@@ -504,7 +542,8 @@
     "genre": "Fantasy",
     "startDate": "2022-11-06",
     "series": "Liveship Traders",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1964
   },
   {
     "sheetRow": 201,
@@ -517,7 +556,8 @@
     "genre": "Science fiction",
     "startDate": "2023-01-12",
     "series": "Children of Time",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1141
   },
   {
     "sheetRow": 202,
@@ -530,7 +570,8 @@
     "genre": "Science fiction",
     "startDate": "2023-01-30",
     "series": "Children of Time",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1266
   },
   {
     "sheetRow": 203,
@@ -543,7 +584,8 @@
     "genre": "Science fiction",
     "startDate": "2023-02-15",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 408
   },
   {
     "sheetRow": 204,
@@ -556,7 +598,8 @@
     "genre": "Fantasy",
     "startDate": "2023-02-17",
     "series": "The First Law",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1625
   },
   {
     "sheetRow": 205,
@@ -569,7 +612,8 @@
     "genre": "Fantasy",
     "startDate": "2023-02-23",
     "series": "The First Law",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1667
   },
   {
     "sheetRow": 206,
@@ -582,7 +626,8 @@
     "genre": "Fantasy",
     "startDate": "2023-03-06",
     "series": "The First Law",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 2043
   },
   {
     "sheetRow": 208,
@@ -595,7 +640,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2023-05-04",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 757
   },
   {
     "sheetRow": 209,
@@ -608,7 +654,8 @@
     "genre": "Science, history & society",
     "startDate": "2023-06-03",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 655
   },
   {
     "sheetRow": 210,
@@ -621,7 +668,8 @@
     "genre": "Science, history & society",
     "startDate": "2023-06-19",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 833
   },
   {
     "sheetRow": 211,
@@ -634,7 +682,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2023-09-23",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1139
   },
   {
     "sheetRow": 212,
@@ -647,7 +696,8 @@
     "genre": "Work & technology",
     "startDate": "2023-09-23",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 770
   },
   {
     "sheetRow": 213,
@@ -660,7 +710,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2023-10-11",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 620
   },
   {
     "sheetRow": 214,
@@ -673,7 +724,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2023-10-27",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 518
   },
   {
     "sheetRow": 215,
@@ -686,7 +738,8 @@
     "genre": "Science, history & society",
     "startDate": "2023-10-29",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 234
   },
   {
     "sheetRow": 216,
@@ -699,7 +752,8 @@
     "genre": "Science, history & society",
     "startDate": "2023-11-05",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1304
   },
   {
     "sheetRow": 217,
@@ -712,7 +766,8 @@
     "genre": "Literary & crime",
     "startDate": "2023-11-05",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1636
   },
   {
     "sheetRow": 218,
@@ -725,7 +780,8 @@
     "genre": "Science fiction",
     "startDate": "2023-11-25",
     "series": "Commonwealth Saga",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 4388
   },
   {
     "sheetRow": 219,
@@ -738,7 +794,8 @@
     "genre": "Science fiction",
     "startDate": "2023-12-16",
     "series": "Commonwealth Saga",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 4365
   },
   {
     "sheetRow": 220,
@@ -751,7 +808,8 @@
     "genre": "Work & technology",
     "startDate": "2024-01-18",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 468
   },
   {
     "sheetRow": 221,
@@ -764,7 +822,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2024-01-30",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 174
   },
   {
     "sheetRow": 222,
@@ -777,7 +836,8 @@
     "genre": "Work & technology",
     "startDate": "2024-03-18",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 694
   },
   {
     "sheetRow": 223,
@@ -790,7 +850,8 @@
     "genre": "Science fiction",
     "startDate": "2024-04-09",
     "series": "Earthseed",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1197
   },
   {
     "sheetRow": 225,
@@ -803,7 +864,8 @@
     "genre": "Science fiction",
     "startDate": "2024-04-16",
     "series": "Earthseed",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1542
   },
   {
     "sheetRow": 226,
@@ -816,7 +878,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2024-04-26",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 680
   },
   {
     "sheetRow": 227,
@@ -829,7 +892,8 @@
     "genre": "Science fiction",
     "startDate": "2024-05-04",
     "series": "Sun Eater",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 3200
   },
   {
     "sheetRow": 228,
@@ -842,7 +906,8 @@
     "genre": "Science fiction",
     "startDate": "2024-06-20",
     "series": "Sun Eater",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2702
   },
   {
     "sheetRow": 229,
@@ -855,7 +920,8 @@
     "genre": "Science fiction",
     "startDate": "2024-07-14",
     "series": "Sun Eater",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1803
   },
   {
     "sheetRow": 230,
@@ -868,7 +934,8 @@
     "genre": "Science fiction",
     "startDate": "2024-08-09",
     "series": "Sun Eater",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1771
   },
   {
     "sheetRow": 231,
@@ -881,7 +948,8 @@
     "genre": "Science fiction",
     "startDate": "2024-11-04",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1963
   },
   {
     "sheetRow": 233,
@@ -894,7 +962,8 @@
     "genre": "Science fiction",
     "startDate": "2024-12-09",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1582
   },
   {
     "sheetRow": 235,
@@ -907,7 +976,8 @@
     "genre": "Science fiction",
     "startDate": "2024-12-22",
     "series": "Rifters",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 839
   },
   {
     "sheetRow": 236,
@@ -920,7 +990,8 @@
     "genre": "Science fiction",
     "startDate": "2025-01-01",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1188
   },
   {
     "sheetRow": 238,
@@ -933,7 +1004,8 @@
     "genre": "Science fiction",
     "startDate": "2025-02-09",
     "series": "Rifters",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 998
   },
   {
     "sheetRow": 239,
@@ -946,7 +1018,8 @@
     "genre": "Science fiction",
     "startDate": "2025-02-22",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1435
   },
   {
     "sheetRow": 241,
@@ -959,7 +1032,8 @@
     "genre": "Science fiction",
     "startDate": "2025-03-09",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 168
   },
   {
     "sheetRow": 242,
@@ -972,7 +1046,8 @@
     "genre": "Science fiction",
     "startDate": "2025-03-10",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 169
   },
   {
     "sheetRow": 243,
@@ -985,7 +1060,8 @@
     "genre": "Science fiction",
     "startDate": "2025-03-10",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 16
   },
   {
     "sheetRow": 244,
@@ -998,7 +1074,8 @@
     "genre": "Science fiction",
     "startDate": "2025-03-11",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 968
   },
   {
     "sheetRow": 245,
@@ -1011,7 +1088,8 @@
     "genre": "Science fiction",
     "startDate": "2025-04-01",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1209
   },
   {
     "sheetRow": 248,
@@ -1024,7 +1102,8 @@
     "genre": "Science fiction",
     "startDate": "2025-04-18",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1298
   },
   {
     "sheetRow": 249,
@@ -1037,7 +1116,8 @@
     "genre": "Health, family & memoir",
     "startDate": "2025-04-20",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 168
   },
   {
     "sheetRow": 250,
@@ -1050,7 +1130,8 @@
     "genre": "Science fiction",
     "startDate": "2025-05-09",
     "series": "The Expanse",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1939
   },
   {
     "sheetRow": 251,
@@ -1063,7 +1144,8 @@
     "genre": "Science, history & society",
     "startDate": "2025-06-06",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 684
   },
   {
     "sheetRow": 252,
@@ -1076,7 +1158,8 @@
     "genre": "Science fiction",
     "startDate": "2025-07-04",
     "series": "The Expanse",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2405
   },
   {
     "sheetRow": 253,
@@ -1089,7 +1172,8 @@
     "genre": "Science fiction",
     "startDate": "2025-07-22",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 2381
   },
   {
     "sheetRow": 254,
@@ -1102,7 +1186,8 @@
     "genre": "Science fiction",
     "startDate": "2025-08-04",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 310
   },
   {
     "sheetRow": 255,
@@ -1115,7 +1200,8 @@
     "genre": "Science fiction",
     "startDate": "2025-08-11",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 320
   },
   {
     "sheetRow": 256,
@@ -1128,7 +1214,8 @@
     "genre": "Science fiction",
     "startDate": "2025-08-25",
     "series": "The Expanse",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 2367
   },
   {
     "sheetRow": 257,
@@ -1141,7 +1228,8 @@
     "genre": "Science, history & society",
     "startDate": null,
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 995
   },
   {
     "sheetRow": 258,
@@ -1154,7 +1242,8 @@
     "genre": "Science fiction",
     "startDate": "2025-10-17",
     "series": null,
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1314
   },
   {
     "sheetRow": 259,
@@ -1167,7 +1256,8 @@
     "genre": "Fantasy",
     "startDate": "2025-11-29",
     "series": "Dungeon Crawler Carl",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1148
   },
   {
     "sheetRow": 260,
@@ -1180,7 +1270,8 @@
     "genre": "Fantasy",
     "startDate": "2025-12-03",
     "series": "Dungeon Crawler Carl",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 986
   },
   {
     "sheetRow": 261,
@@ -1193,7 +1284,8 @@
     "genre": "Fantasy",
     "startDate": "2025-12-06",
     "series": "Dungeon Crawler Carl",
-    "pageSource": "Amazon Kindle ASIN"
+    "pageSource": "Amazon Kindle ASIN",
+    "pageFlips": 1446
   },
   {
     "sheetRow": 262,
@@ -1206,7 +1298,8 @@
     "genre": "Fantasy",
     "startDate": "2025-12-12",
     "series": "Dungeon Crawler Carl",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1609
   },
   {
     "sheetRow": 263,
@@ -1219,7 +1312,8 @@
     "genre": "Fantasy",
     "startDate": "2025-12-25",
     "series": "Dungeon Crawler Carl",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2022
   },
   {
     "sheetRow": 264,
@@ -1232,7 +1326,8 @@
     "genre": "Fantasy",
     "startDate": "2025-12-29",
     "series": "Dungeon Crawler Carl",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2321
   },
   {
     "sheetRow": 265,
@@ -1245,7 +1340,8 @@
     "genre": "Fantasy",
     "startDate": "2026-01-06",
     "series": "Dungeon Crawler Carl",
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 2442
   },
   {
     "sheetRow": 266,
@@ -1258,7 +1354,8 @@
     "genre": "Work & technology",
     "startDate": "2026-02-07",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 96
   },
   {
     "sheetRow": 270,
@@ -1271,7 +1368,8 @@
     "genre": "Science fiction",
     "startDate": "2026-04-24",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 749
   },
   {
     "sheetRow": 272,
@@ -1284,6 +1382,7 @@
     "genre": "Science fiction",
     "startDate": "2026-05-17",
     "series": null,
-    "pageSource": "Google Sheet"
+    "pageSource": "Google Sheet",
+    "pageFlips": 1205
   }
 ]

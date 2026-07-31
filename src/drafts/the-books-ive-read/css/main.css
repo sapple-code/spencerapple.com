@@ -133,6 +133,33 @@
   stroke-width: 2.5px;
 }
 
+.reading-chart .flip-pace-line {
+  fill: none;
+  stroke: #e15759;
+  stroke-dasharray: 6 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.25px;
+}
+
+.reading-chart .comparison-trend {
+  stroke: #555;
+  stroke-dasharray: 5 4;
+  stroke-width: 1.5px;
+}
+
+.reading-chart .line-swatch {
+  border-top: 3px solid #4e79a7;
+  display: inline-block;
+  height: 0;
+  width: 1.5em;
+}
+
+.reading-chart .flip-line-swatch {
+  border-color: #e15759;
+  border-top-style: dashed;
+}
+
 .reading-chart .pace-summary {
   margin-top: 0.5em;
 }
