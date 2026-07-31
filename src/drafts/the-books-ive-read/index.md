@@ -54,6 +54,9 @@ modifyDate: 2026-07-28 15:00
 
 ## What the reading history shows
 
+- Interaction note: hover or focus a chart mark to isolate it. On touch screens,
+  tap a mark to pin the highlight and tap elsewhere to clear it.
+
 ### Books read by year and genre
 
 <div id="books-by-year" class="reading-chart"></div>
@@ -110,7 +113,7 @@ modifyDate: 2026-07-28 15:00
 - Interpretation prompt: `[series make the shifts between short and very long
   books easier to see than yearly counts alone]`.
 
-### Which series held my attention?
+### Which series did I binge?
 
 <div id="series-reading-momentum" class="reading-chart"></div>
 
@@ -122,13 +125,15 @@ modifyDate: 2026-07-28 15:00
   - Both measures are estimates from book-level intervals, not daily Kindle
     telemetry.
 - Observation prompts:
-  - Dungeon Crawler Carl is the clearest candidate for the most engrossing run:
+  - Dungeon Crawler Carl is the clearest candidate for the most concentrated run:
     4,454 pages across seven books in 54 days, or about 82.5 pages per calendar
     day.
   - The Nexus Trilogy follows at 63.3 pages/day across 27 days; Commonwealth
     Saga is third at 54.5 pages/day across 37 days.
   - The Expanse has the most books and pages, but its 292-day span lowers its
     calendar momentum to 18.1 pages/day; it looks more durable than consuming.
+  - Sun Eater ranks much lower at 22.4 pages/day even though it is one of my
+    favorite series. Pace detects bingeing, not enjoyment.
 - Interpretation prompt: `[the difference between a series binge and a series
   that stayed in rotation for months]`.
 
@@ -155,15 +160,12 @@ modifyDate: 2026-07-28 15:00
 <div id="pages-per-day" class="reading-chart"></div>
 
 - Chart definition:
-  - Continuous 30-day rolling averages of estimated edition pages and a
-    flip-derived page equivalent.
+  - One continuous 30-day rolling average of estimated edition pages.
   - For each book, spread its pages evenly across the inclusive interval from
     `Started Reading` to its chart date; add overlapping books and retain zero
     days.
-  - Convert the comparison line using the aggregate 2.67 flips-per-page ratio
-    from the 91 books with both measures.
   - Covers 96 of 99 read books: two are undated and `Abundance` has no start
-    date. The flip-derived line covers 90 timed books.
+    date.
   - This is a pace estimate from book-level intervals, not daily Kindle
     telemetry.
 - Observation prompts:
@@ -191,6 +193,23 @@ modifyDate: 2026-07-28 15:00
   streak]`.
 
 ## How my choices changed
+
+### Borrowed versus bought
+
+<div id="books-by-acquisition" class="reading-chart"></div>
+
+- Chart definition:
+  - Stacked annual counts using Amazon's `Ownership Subtype`: `Purchase` versus
+    `PublicLibraryLending`.
+  - 68 read books were bought, 29 were public-library loans, and two manually
+    completed books have no ownership classification or usable date.
+- Observation prompts:
+  - Every dated book from 2020 through 2023 is classified as bought.
+  - The shift begins in 2024 with 3 borrowed books against 13 bought.
+  - In 2025, the relationship reverses sharply: 24 borrowed and 5 bought.
+  - 2026 is partial through June, with 2 borrowed and 3 bought.
+- Interpretation prompt: `[how Libby changed the economics and sequencing of
+  choosing the next book]`.
 
 - Buying every Kindle book:
   - Convenience.

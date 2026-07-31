@@ -72,6 +72,26 @@
   stroke: #e8e8e8;
 }
 
+.reading-chart .chart-highlight-target {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 140ms ease, opacity 140ms ease, stroke-width 140ms ease;
+}
+
+.reading-chart .chart-highlight-target.is-hover-muted {
+  opacity: 0.16;
+}
+
+.reading-chart .chart-highlight-target.is-hover-highlighted {
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 45%));
+  opacity: 1;
+}
+
+.reading-chart .chart-highlight-target:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 2px;
+}
+
 .reading-chart .chart-controls {
   align-items: center;
   display: flex;
@@ -133,15 +153,6 @@
   stroke-width: 2.5px;
 }
 
-.reading-chart .flip-pace-line {
-  fill: none;
-  stroke: #e15759;
-  stroke-dasharray: 6 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.25px;
-}
-
 .reading-chart .comparison-trend {
   stroke: #555;
   stroke-dasharray: 5 4;
@@ -190,16 +201,8 @@
   font-size: 0.75rem;
 }
 
-.reading-chart .line-swatch {
-  border-top: 3px solid #4e79a7;
-  display: inline-block;
-  height: 0;
-  width: 1.5em;
-}
-
-.reading-chart .flip-line-swatch {
-  border-color: #e15759;
-  border-top-style: dashed;
+.reading-chart .pace-line.is-hover-highlighted {
+  stroke-width: 4px;
 }
 
 .reading-chart .pace-summary {

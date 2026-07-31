@@ -66,6 +66,31 @@ function assertRendered(document, post) {
   }
 }
 
+function assertHighlightInteractions(dom, post) {
+  const { document, MouseEvent } = dom.window;
+  for (const id of post.charts) {
+    const chart = document.getElementById(id);
+    const targets = Array.from(chart.querySelectorAll('.chart-highlight-target'));
+    assert(targets.length > 0, `${post.path} #${id} has no highlight targets`);
+
+    const target = targets[0];
+    target.dispatchEvent(new MouseEvent('mouseenter'));
+    assert(target.classList.contains('is-hover-highlighted'));
+    if (targets.length > 1) {
+      assert(targets.slice(1).some((peer) => peer.classList.contains('is-hover-muted')));
+    }
+
+    target.dispatchEvent(new MouseEvent('mouseleave'));
+    assert(!target.classList.contains('is-hover-highlighted'));
+
+    target.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    assert.equal(target.dataset.chartPinned, 'true');
+    document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    assert.equal(target.dataset.chartPinned, undefined);
+    assert(!target.classList.contains('is-hover-highlighted'));
+  }
+}
+
 async function waitForEnhancement(document, post) {
   const deadline = Date.now() + 5000;
   while (Date.now() < deadline) {
@@ -120,6 +145,12 @@ async function main() {
 
       await waitForEnhancement(dom.window.document, post);
       assertRendered(dom.window.document, post);
+      if (post.path === '/drafts/the-books-ive-read/') {
+        assertHighlightInteractions(dom, post);
+        const paceChart = dom.window.document.getElementById('pages-per-day');
+        assert.equal(paceChart.querySelectorAll('.pace-line').length, 1);
+        assert.equal(paceChart.querySelectorAll('.flip-pace-line').length, 0);
+      }
       assert.deepEqual(scriptErrors, [], `${post.path} produced browser script errors`);
       dom.window.close();
     }

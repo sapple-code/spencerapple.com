@@ -2,7 +2,19 @@
 
 const d3 = require('d3');
 const prerenderGraphComponents = require('prerender-graph-components');
-const readingHistory = require('../src/drafts/the-books-ive-read/data/reading-history.json');
+const rawReadingHistory = require('../src/drafts/the-books-ive-read/data/reading-history.json');
+const acquisitionHistory = require('../src/drafts/the-books-ive-read/data/acquisition-history.json');
+
+const borrowedSheetRows = new Set(acquisitionHistory.borrowedSheetRows);
+const unknownAcquisitionRows = new Set(acquisitionHistory.unknownSheetRows);
+const readingHistory = rawReadingHistory.map((book) => ({
+  ...book,
+  acquisition: borrowedSheetRows.has(book.sheetRow)
+    ? 'Borrowed'
+    : unknownAcquisitionRows.has(book.sheetRow)
+      ? 'Unknown'
+      : 'Bought'
+}));
 
 const genres = [
   'Fantasy',
@@ -63,6 +75,63 @@ function appendLegend(element) {
   items.append('span').text((genre) => genre);
 }
 
+function clearHoverHighlight(rootDocument) {
+  d3.select(rootDocument)
+    .selectAll('.chart-highlight-target')
+    .classed('is-hover-muted', false)
+    .classed('is-hover-highlighted', false)
+    .attr('data-chart-pinned', null);
+}
+
+function bindHighlight(rootDocument, targets, peers = targets) {
+  function highlight(target) {
+    peers
+      .classed('is-hover-muted', function () {
+        return this !== target;
+      })
+      .classed('is-hover-highlighted', function () {
+        return this === target;
+      });
+  }
+
+  function toggle(event) {
+    event.stopPropagation();
+    const wasPinned = this.dataset.chartPinned === 'true';
+    clearHoverHighlight(rootDocument);
+    if (!wasPinned) {
+      this.dataset.chartPinned = 'true';
+      highlight(this);
+    }
+  }
+
+  targets
+    .classed('chart-highlight-target', true)
+    .attr('tabindex', 0)
+    .on('mouseenter.chartHighlight', function () {
+      if (!rootDocument.querySelector('[data-chart-pinned="true"]')) {
+        highlight(this);
+      }
+    })
+    .on('mouseleave.chartHighlight', function () {
+      if (!rootDocument.querySelector('[data-chart-pinned="true"]')) {
+        clearHoverHighlight(rootDocument);
+      }
+    })
+    .on('click.chartHighlight', toggle)
+    .on('keydown.chartHighlight', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggle.call(this, event);
+      }
+    });
+}
+
+function enableBackgroundClear(rootDocument) {
+  if (rootDocument.documentElement.dataset.chartHighlightReady) return;
+  rootDocument.documentElement.dataset.chartHighlightReady = 'true';
+  rootDocument.addEventListener('click', () => clearHoverHighlight(rootDocument));
+}
+
 function renderBooksByYear(rootDocument) {
   const element = rootDocument.querySelector('#books-by-year');
   if (!element) return;
@@ -113,7 +182,7 @@ function renderBooksByYear(rootDocument) {
     .call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('d')))
     .call((axis) => axis.select('.domain').remove());
 
-  svg
+  const bars = svg
     .append('g')
     .selectAll('g')
     .data(stack)
@@ -128,11 +197,14 @@ function renderBooksByYear(rootDocument) {
     .attr('y', (point) => y(point[1]))
     .attr('height', (point) => y(point[0]) - y(point[1]))
     .attr('width', x.bandwidth())
+    .filter((point) => point[1] > point[0]);
+  bars
     .append('title')
     .text(
       (point) =>
         `${point.data.year}: ${point[1] - point[0]} ${point.genre.toLowerCase()} book${point[1] - point[0] === 1 ? '' : 's'}`
     );
+  bindHighlight(rootDocument, bars);
 
   svg
     .append('g')
@@ -208,7 +280,7 @@ function renderAveragePages(rootDocument) {
     .call(d3.axisLeft(y).tickSize(0))
     .call((axis) => axis.select('.domain').remove());
 
-  svg
+  const bars = svg
     .append('g')
     .selectAll('rect')
     .data(rows)
@@ -217,12 +289,14 @@ function renderAveragePages(rootDocument) {
     .attr('y', (row) => y(row.genre))
     .attr('width', (row) => x(row.average) - x(0))
     .attr('height', y.bandwidth())
-    .attr('fill', (row) => colors.get(row.genre))
+    .attr('fill', (row) => colors.get(row.genre));
+  bars
     .append('title')
     .text(
       (row) =>
         `${row.genre}: ${row.average} average pages; page count known for ${row.known} of ${row.total} books`
     );
+  bindHighlight(rootDocument, bars);
 
   svg
     .append('g')
@@ -330,6 +404,7 @@ function renderBookScatter(rootDocument) {
       (book) =>
         `${book.title}\n${d3.utcFormat('%B %-d, %Y')(book.readDateValue)} · ${book.pages} pages · ${book.genre}${book.series ? ` · ${book.series}` : ''}`
     );
+  bindHighlight(rootDocument, dots);
 
   const detail = d3
     .select(element)
@@ -460,7 +535,7 @@ function renderSeriesMomentum(rootDocument) {
     'Series ranked by estimated pages per calendar day, with active-reading pace shown for comparison.'
   );
 
-  svg
+  const dots = svg
     .append('g')
     .attr('transform', `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom(x).ticks(width < 480 ? 4 : 6))
@@ -515,6 +590,7 @@ function renderSeriesMomentum(rootDocument) {
     .attr('y', (row) => y(row.series) + y.bandwidth() / 2)
     .attr('dominant-baseline', 'middle')
     .text((row) => row.momentum.toFixed(1));
+  bindHighlight(rootDocument, groups);
 
   d3.select(element)
     .append('p')
@@ -609,7 +685,7 @@ function renderPagesVsFlips(rootDocument) {
     .attr('y1', y(intercept + slope * lineStart))
     .attr('x2', x(lineEnd))
     .attr('y2', y(intercept + slope * lineEnd));
-  svg
+  const dots = svg
     .append('g')
     .selectAll('circle')
     .data(matches)
@@ -618,12 +694,14 @@ function renderPagesVsFlips(rootDocument) {
     .attr('cx', (book) => x(book.pages))
     .attr('cy', (book) => y(book.pageFlips))
     .attr('fill', (book) => colors.get(book.genre))
-    .attr('r', 4.5)
+    .attr('r', 4.5);
+  dots
     .append('title')
     .text(
       (book) =>
         `${book.title}\n${book.pages} pages · ${book.pageFlips.toLocaleString()} page flips · ${(book.pageFlips / book.pages).toFixed(2)} flips/page`
     );
+  bindHighlight(rootDocument, dots);
 
   d3.select(element)
     .append('p')
@@ -637,15 +715,111 @@ function renderPagesVsFlips(rootDocument) {
     .text('The dashed line is an ordinary least-squares trend, not a conversion rule. Page flips are Kindle interaction events and can include navigation or revisiting; eight read books have no flip count.');
 }
 
+function renderAcquisitionHistory(rootDocument) {
+  const element = rootDocument.querySelector('#books-by-acquisition');
+  if (!element) return;
+
+  clear(element);
+  const acquisitionTypes = ['Bought', 'Borrowed'];
+  const acquisitionColors = new Map([
+    ['Bought', '#4e79a7'],
+    ['Borrowed', '#59a14f']
+  ]);
+  const legend = d3.select(element).append('ul').attr('class', 'legend');
+  const legendItems = legend.selectAll('li').data(acquisitionTypes).join('li');
+  legendItems
+    .append('span')
+    .attr('class', 'legend-swatch')
+    .style('background-color', (type) => acquisitionColors.get(type));
+  legendItems.append('span').text((type) => type);
+
+  const years = d3.range(2020, 2027);
+  const rows = years.map((year) => ({
+    year,
+    Bought: books.filter(
+      (book) => book.year === year && book.acquisition === 'Bought'
+    ).length,
+    Borrowed: books.filter(
+      (book) => book.year === year && book.acquisition === 'Borrowed'
+    ).length
+  }));
+  const stack = d3.stack().keys(acquisitionTypes)(rows);
+  const width = widthFor(element);
+  const height = width < 480 ? 330 : 380;
+  const margin = { top: 15, right: 14, bottom: 40, left: 42 };
+  const x = d3
+    .scaleBand()
+    .domain(years)
+    .range([margin.left, width - margin.right])
+    .padding(0.24);
+  const y = d3
+    .scaleLinear()
+    .domain([0, d3.max(rows, (row) => row.Bought + row.Borrowed)])
+    .nice()
+    .range([height - margin.bottom, margin.top]);
+  const svg = appendSvg(
+    element,
+    width,
+    height,
+    'Stacked bars comparing books bought with books borrowed from a public library by read year.'
+  );
+
+  svg
+    .append('g')
+    .attr('transform', `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).tickSizeOuter(0));
+  svg
+    .append('g')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).ticks(6).tickFormat(d3.format('d')))
+    .call((axis) => axis.select('.domain').remove());
+
+  const bars = svg
+    .append('g')
+    .selectAll('g')
+    .data(stack)
+    .join('g')
+    .attr('fill', (series) => acquisitionColors.get(series.key))
+    .selectAll('rect')
+    .data((series) =>
+      series.map((point) => ({ ...point, acquisition: series.key }))
+    )
+    .join('rect')
+    .attr('x', (point) => x(point.data.year))
+    .attr('y', (point) => y(point[1]))
+    .attr('height', (point) => y(point[0]) - y(point[1]))
+    .attr('width', x.bandwidth())
+    .filter((point) => point[1] > point[0]);
+  bars
+    .append('title')
+    .text(
+      (point) =>
+        `${point.data.year}: ${point[1] - point[0]} ${point.acquisition.toLowerCase()} book${point[1] - point[0] === 1 ? '' : 's'}`
+    );
+  bindHighlight(rootDocument, bars);
+
+  svg
+    .append('g')
+    .selectAll('text')
+    .data(rows)
+    .join('text')
+    .attr('class', 'value-label')
+    .attr('text-anchor', 'middle')
+    .attr('x', (row) => x(row.year) + x.bandwidth() / 2)
+    .attr('y', (row) => y(row.Bought + row.Borrowed) - 7)
+    .text((row) => row.Bought + row.Borrowed);
+
+  d3.select(element)
+    .append('p')
+    .attr('class', 'chart-note')
+    .text('Based on Amazon ownership subtype: Purchase versus PublicLibraryLending. The 97 dated books split into 68 bought and 29 borrowed; two manually completed, undated books have no ownership classification. 2026 is partial through June 25.');
+}
+
 function renderDailyPages(rootDocument) {
   const element = rootDocument.querySelector('#pages-per-day');
   if (!element) return;
 
   clear(element);
-  const flipBooks = readingHistory.filter((book) => book.pages && book.pageFlips);
-  const pagesPerFlip =
-    d3.sum(flipBooks, (book) => book.pages) /
-    d3.sum(flipBooks, (book) => book.pageFlips);
   const paceBooks = readingHistory
     .filter((book) => book.startDate && book.readDate && book.pages)
     .map((book) => {
@@ -664,32 +838,13 @@ function renderDailyPages(rootDocument) {
       pages: d3.sum(activeBooks, (book) => {
         const activeDays = d3.utcDay.count(book.start, book.end) + 1;
         return book.pages / activeDays;
-      }),
-      flipEquivalent: d3.sum(
-        activeBooks.filter((book) => book.pageFlips),
-        (book) => {
-          const activeDays = d3.utcDay.count(book.start, book.end) + 1;
-          return (book.pageFlips * pagesPerFlip) / activeDays;
-        }
-      )
+      })
     };
   });
   daily.forEach((day, index) => {
     const window = daily.slice(Math.max(0, index - 29), index + 1);
     day.average = d3.mean(window, (entry) => entry.pages);
-    day.flipAverage = d3.mean(window, (entry) => entry.flipEquivalent);
   });
-
-  const lineLegend = d3.select(element).append('ul').attr('class', 'legend line-legend');
-  const lineItems = lineLegend
-    .selectAll('li')
-    .data([
-      { label: 'Edition-page estimate', className: 'page-line-swatch' },
-      { label: 'Flip-derived page equivalent', className: 'flip-line-swatch' }
-    ])
-    .join('li');
-  lineItems.append('span').attr('class', (item) => `line-swatch ${item.className}`);
-  lineItems.append('span').text((item) => item.label);
 
   const width = widthFor(element);
   const height = width < 480 ? 330 : 390;
@@ -700,14 +855,14 @@ function renderDailyPages(rootDocument) {
     .range([margin.left, width - margin.right]);
   const y = d3
     .scaleLinear()
-    .domain([0, d3.max(daily, (day) => Math.max(day.average, day.flipAverage))])
+    .domain([0, d3.max(daily, (day) => day.average)])
     .nice()
     .range([height - margin.bottom, margin.top]);
   const svg = appendSvg(
     element,
     width,
     height,
-    'Two continuous lines comparing 30-day rolling averages of edition-page estimates and flip-derived page equivalents from May 2020 through June 2026.'
+    'Continuous line showing the 30-day rolling average of estimated edition pages read per day from May 2020 through June 2026.'
   );
 
   svg
@@ -731,39 +886,32 @@ function renderDailyPages(rootDocument) {
     .attr('class', 'axis-label')
     .attr('x', margin.left)
     .attr('y', 11)
-    .text('Page equivalents/day');
+    .text('Estimated pages/day');
 
   const line = d3
     .line()
     .x((day) => x(day.date))
     .y((day) => y(day.average))
     .curve(d3.curveMonotoneX);
-  svg
+  const paceLine = svg
     .append('path')
     .datum(daily)
     .attr('class', 'pace-line')
     .attr('d', line);
-  const flipLine = d3
-    .line()
-    .x((day) => x(day.date))
-    .y((day) => y(day.flipAverage))
-    .curve(d3.curveMonotoneX);
-  svg
-    .append('path')
-    .datum(daily)
-    .attr('class', 'flip-pace-line')
-    .attr('d', flipLine);
+  paceLine
+    .append('title')
+    .text('30-day rolling average of estimated edition pages read per day');
+  bindHighlight(rootDocument, paceLine);
 
   const overall = d3.mean(daily, (day) => day.pages);
-  const flipOverall = d3.mean(daily, (day) => day.flipEquivalent);
   d3.select(element)
     .append('p')
     .attr('class', 'series-detail pace-summary')
-    .html(`<strong>${overall.toFixed(1)} page estimate vs. ${flipOverall.toFixed(1)} flip-derived equivalents/day</strong><span>30-day rolling averages shown above</span>`);
+    .html(`<strong>${overall.toFixed(1)} estimated pages/day</strong><span>30-day rolling average shown above</span>`);
   d3.select(element)
     .append('p')
     .attr('class', 'chart-note')
-    .text(`Estimate, not observed daily activity: each book’s pages or flips are spread evenly across its inclusive Started Reading → chart-date interval, overlapping books are added, and zero-reading gaps stay in the timeline. The flip line converts at ${(1 / pagesPerFlip).toFixed(2)} flips per page, calibrated across 91 books; it covers 90 timed books versus 96 for the page-count line. One reversed source interval is treated as a same-day read.`);
+    .text('Estimate, not observed daily activity: each book’s edition pages are spread evenly across its inclusive Started Reading → chart-date interval, overlapping books are added, and zero-reading gaps stay in the timeline. The line covers 96 timed books. One reversed source interval is treated as a same-day read.');
 }
 
 function renderCompletionCadence(rootDocument) {
@@ -861,6 +1009,7 @@ function renderCompletionCadence(rootDocument) {
     .attr('text-anchor', 'middle')
     .attr('fill', (cell) => (cell.count >= 3 ? '#fff' : null))
     .text((cell) => cell.count || '–');
+  bindHighlight(rootDocument, groups);
 
   d3.select(element)
     .append('p')
@@ -874,8 +1023,12 @@ function renderCharts(rootDocument) {
   renderBookScatter(rootDocument);
   renderSeriesMomentum(rootDocument);
   renderPagesVsFlips(rootDocument);
+  renderAcquisitionHistory(rootDocument);
   renderDailyPages(rootDocument);
   renderCompletionCadence(rootDocument);
+  if (typeof window !== 'undefined') {
+    enableBackgroundClear(rootDocument);
+  }
 }
 
 const render = prerenderGraphComponents.progressiveRenderer(renderCharts, {

@@ -109,10 +109,12 @@ mean no recorded finish/activity proxy, not necessarily no reading.
 4. Continuous 30-day rolling line of estimated pages per day, derived by
    distributing each book's pages across its recorded reading interval.
 5. Edition page count versus Kindle page flips for the 91 books with both
-   measures, plus a flip-derived comparison line on the pace chart.
+   measures.
 6. A year-by-month cadence heatmap, paired with median and longest-gap metrics.
 7. Series reading momentum: total edition pages divided by the calendar span
    of each multi-book series, compared with pace across merged active intervals.
+8. Annual bought-versus-borrowed bars using Amazon ownership subtype for 97
+   dated books.
 
 The generated post data lives in
 `src/drafts/the-books-ive-read/data/reading-history.json`; the browser chart
@@ -180,15 +182,22 @@ observed Kindle pages per calendar day.
 
 Kindle page flips are available for 91 of the 99 read books. Across those
 books, page count and flips correlate at `r = 0.83`, with an aggregate 2.67
-flips per edition page. The comparison chart keeps raw flips on their own axis;
-the pace overlay uses that aggregate ratio only to put the second line on a
-comparable scale.
+flips per edition page. The comparison chart keeps raw flips on their own axis.
 
 The series-momentum chart uses the same interval caveat. It includes 13 series
 with at least two dated books. Dungeon Crawler Carl ranks first at 4,454 pages
 across 54 inclusive calendar days (82.5 pages/day), followed by the Nexus
 Trilogy at 63.3 and Commonwealth Saga at 54.5. This is evidence of concentrated
-reading, not a direct measurement of engagement or enjoyment.
+reading, not a direct measurement of engagement or enjoyment. Sun Eater is a
+useful counterexample: its 22.4 pages/day rank is low despite being one of the
+reader's favorite series.
+
+The acquisition chart joins the 99 read books to the Amazon ownership export
+by recorded Kindle ASIN. It classifies 68 as `Purchase`, 29 as
+`PublicLibraryLending`, and leaves the two manually completed books without an
+ASIN as unknown. All dated books through 2023 are purchases; 2025 changes to 24
+borrowed versus 5 bought. This measures acquisition, not whether the consumed
+format was an ebook or audiobook.
 
 ## 2026-07-27 pre-classification chart snapshot
 
