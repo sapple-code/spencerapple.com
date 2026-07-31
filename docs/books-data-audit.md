@@ -111,6 +111,8 @@ mean no recorded finish/activity proxy, not necessarily no reading.
 5. Edition page count versus Kindle page flips for the 91 books with both
    measures, plus a flip-derived comparison line on the pace chart.
 6. A year-by-month cadence heatmap, paired with median and longest-gap metrics.
+7. Series reading momentum: total edition pages divided by the calendar span
+   of each multi-book series, compared with pace across merged active intervals.
 
 The generated post data lives in
 `src/drafts/the-books-ive-read/data/reading-history.json`; the browser chart
@@ -181,6 +183,12 @@ books, page count and flips correlate at `r = 0.83`, with an aggregate 2.67
 flips per edition page. The comparison chart keeps raw flips on their own axis;
 the pace overlay uses that aggregate ratio only to put the second line on a
 comparable scale.
+
+The series-momentum chart uses the same interval caveat. It includes 13 series
+with at least two dated books. Dungeon Crawler Carl ranks first at 4,454 pages
+across 54 inclusive calendar days (82.5 pages/day), followed by the Nexus
+Trilogy at 63.3 and Commonwealth Saga at 54.5. This is evidence of concentrated
+reading, not a direct measurement of engagement or enjoyment.
 
 ## 2026-07-27 pre-classification chart snapshot
 

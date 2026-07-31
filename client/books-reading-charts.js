@@ -374,6 +374,154 @@ function renderBookScatter(rootDocument) {
     .text('Each dot is one book that counts as read. Two manually completed books have no usable date and are omitted: The Hard Thing About Hard Things and Good to Great. Page count is edition-dependent.');
 }
 
+function renderSeriesMomentum(rootDocument) {
+  const element = rootDocument.querySelector('#series-reading-momentum');
+  if (!element) return;
+
+  clear(element);
+  const rows = Array.from(
+    d3.group(
+      datedBooksWithPages.filter((book) => book.series && book.startDate),
+      (book) => book.series
+    ),
+    ([series, matches]) => {
+      const intervals = matches
+        .map((book) => {
+          const start = d3.utcParse('%Y-%m-%d')(book.startDate);
+          return {
+            start,
+            end: book.readDateValue < start ? start : book.readDateValue
+          };
+        })
+        .sort((left, right) => d3.ascending(left.start, right.start));
+      const merged = [];
+      for (const interval of intervals) {
+        const previous = merged[merged.length - 1];
+        if (previous && interval.start <= d3.utcDay.offset(previous.end, 1)) {
+          previous.end = d3.max([previous.end, interval.end]);
+        } else {
+          merged.push({ ...interval });
+        }
+      }
+
+      const pages = d3.sum(matches, (book) => book.pages);
+      const first = d3.min(intervals, (interval) => interval.start);
+      const last = d3.max(intervals, (interval) => interval.end);
+      const calendarDays = d3.utcDay.count(first, last) + 1;
+      const activeDays = d3.sum(
+        merged,
+        (interval) => d3.utcDay.count(interval.start, interval.end) + 1
+      );
+
+      return {
+        series,
+        books: matches.length,
+        pages,
+        calendarDays,
+        activeDays,
+        momentum: pages / calendarDays,
+        activePace: pages / activeDays
+      };
+    }
+  )
+    .filter((row) => row.books >= 2)
+    .sort((left, right) => d3.descending(left.momentum, right.momentum));
+
+  const legend = d3.select(element).append('ul').attr('class', 'legend line-legend');
+  legend
+    .append('li')
+    .html('<span class="series-momentum-dot"></span><span>Calendar-span pace</span>');
+  legend
+    .append('li')
+    .html('<span class="series-active-dot"></span><span>Active-interval pace</span>');
+
+  const width = widthFor(element);
+  const height = Math.max(480, rows.length * 32 + 64);
+  const margin = {
+    top: 14,
+    right: 54,
+    bottom: 48,
+    left: width < 480 ? 126 : 164
+  };
+  const x = d3
+    .scaleLinear()
+    .domain([0, d3.max(rows, (row) => row.activePace)])
+    .nice()
+    .range([margin.left, width - margin.right]);
+  const y = d3
+    .scaleBand()
+    .domain(rows.map((row) => row.series))
+    .range([margin.top, height - margin.bottom])
+    .padding(0.4);
+  const svg = appendSvg(
+    element,
+    width,
+    height,
+    'Series ranked by estimated pages per calendar day, with active-reading pace shown for comparison.'
+  );
+
+  svg
+    .append('g')
+    .attr('transform', `translate(0,${height - margin.bottom})`)
+    .call(d3.axisBottom(x).ticks(width < 480 ? 4 : 6))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('g')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).tickSize(0))
+    .call((axis) => axis.select('.domain').remove());
+  svg
+    .append('text')
+    .attr('class', 'axis-label')
+    .attr('x', (margin.left + width - margin.right) / 2)
+    .attr('y', height - 8)
+    .attr('text-anchor', 'middle')
+    .text('Estimated pages per day');
+
+  const groups = svg.append('g').selectAll('g').data(rows).join('g');
+  groups
+    .append('line')
+    .attr('class', 'series-pace-range')
+    .attr('x1', (row) => x(row.momentum))
+    .attr('x2', (row) => x(row.activePace))
+    .attr('y1', (row) => y(row.series) + y.bandwidth() / 2)
+    .attr('y2', (row) => y(row.series) + y.bandwidth() / 2);
+  groups
+    .append('circle')
+    .attr('class', 'series-momentum-point')
+    .attr('cx', (row) => x(row.momentum))
+    .attr('cy', (row) => y(row.series) + y.bandwidth() / 2)
+    .attr('r', 5)
+    .append('title')
+    .text(
+      (row) =>
+        `${row.series}: ${row.momentum.toFixed(1)} pages/day across ${row.calendarDays} calendar days (${row.books} books, ${row.pages.toLocaleString()} pages)`
+    );
+  groups
+    .append('circle')
+    .attr('class', 'series-active-point')
+    .attr('cx', (row) => x(row.activePace))
+    .attr('cy', (row) => y(row.series) + y.bandwidth() / 2)
+    .attr('r', 7)
+    .append('title')
+    .text(
+      (row) =>
+        `${row.series}: ${row.activePace.toFixed(1)} pages per active interval day (${row.activeDays} days)`
+    );
+  groups
+    .append('text')
+    .attr('class', 'series-pace-label')
+    .attr('x', (row) => x(d3.max([row.momentum, row.activePace])) + 8)
+    .attr('y', (row) => y(row.series) + y.bandwidth() / 2)
+    .attr('dominant-baseline', 'middle')
+    .text((row) => row.momentum.toFixed(1));
+
+  d3.select(element)
+    .append('p')
+    .attr('class', 'chart-note')
+    .text('Multi-book series only. Calendar-span pace divides total pages by the inclusive span from the first recorded start to the last chart date, so breaks between books reduce the estimate. Active-interval pace removes gaps between recorded book intervals. Both are estimates from book-level dates, not observed daily reading.');
+}
+
 function renderPagesVsFlips(rootDocument) {
   const element = rootDocument.querySelector('#pages-vs-page-flips');
   if (!element) return;
@@ -724,6 +872,7 @@ function renderCharts(rootDocument) {
   renderBooksByYear(rootDocument);
   renderAveragePages(rootDocument);
   renderBookScatter(rootDocument);
+  renderSeriesMomentum(rootDocument);
   renderPagesVsFlips(rootDocument);
   renderDailyPages(rootDocument);
   renderCompletionCadence(rootDocument);

@@ -148,6 +148,48 @@
   stroke-width: 1.5px;
 }
 
+.reading-chart .series-pace-range {
+  stroke: #b7b7b7;
+  stroke-width: 3;
+}
+
+.reading-chart .series-momentum-point,
+.reading-chart .series-momentum-dot {
+  fill: #1f77b4;
+}
+
+.reading-chart .series-momentum-dot {
+  background-color: #1f77b4;
+}
+
+.reading-chart .series-active-point,
+.reading-chart .series-active-dot {
+  stroke: #d45500;
+  stroke-width: 2;
+}
+
+.reading-chart .series-active-point {
+  fill: none;
+}
+
+.reading-chart .series-momentum-dot,
+.reading-chart .series-active-dot {
+  border-radius: 50%;
+  display: inline-block;
+  height: 0.8rem;
+  width: 0.8rem;
+}
+
+.reading-chart .series-active-dot {
+  background-color: #fff;
+  border: 2px solid #d45500;
+}
+
+.reading-chart .series-pace-label {
+  fill: #444;
+  font-size: 0.75rem;
+}
+
 .reading-chart .line-swatch {
   border-top: 3px solid #4e79a7;
   display: inline-block;

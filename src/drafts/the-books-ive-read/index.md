@@ -110,6 +110,28 @@ modifyDate: 2026-07-28 15:00
 - Interpretation prompt: `[series make the shifts between short and very long
   books easier to see than yearly counts alone]`.
 
+### Which series held my attention?
+
+<div id="series-reading-momentum" class="reading-chart"></div>
+
+- Chart definition:
+  - Multi-book series ranked by total edition pages divided by the inclusive
+    calendar span from the first recorded start to the final chart date.
+  - The comparison marker removes gaps between recorded book intervals, making
+    it possible to distinguish fast reading from back-to-back series momentum.
+  - Both measures are estimates from book-level intervals, not daily Kindle
+    telemetry.
+- Observation prompts:
+  - Dungeon Crawler Carl is the clearest candidate for the most engrossing run:
+    4,454 pages across seven books in 54 days, or about 82.5 pages per calendar
+    day.
+  - The Nexus Trilogy follows at 63.3 pages/day across 27 days; Commonwealth
+    Saga is third at 54.5 pages/day across 37 days.
+  - The Expanse has the most books and pages, but its 292-day span lowers its
+    calendar momentum to 18.1 pages/day; it looks more durable than consuming.
+- Interpretation prompt: `[the difference between a series binge and a series
+  that stayed in rotation for months]`.
+
 ### Page count versus Kindle page flips
 
 <div id="pages-vs-page-flips" class="reading-chart"></div>
