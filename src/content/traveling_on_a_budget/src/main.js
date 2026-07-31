@@ -70,3 +70,9 @@ dispatch.on("loaded.budgetByPlace", function (data) {
         .datum(data.places)
         .call(scatterplot1);
 });
+
+dispatch.on("loaded.progressiveEnhancement", function () {
+    ['budgetByCountry', 'spendingPerPlace', 'avgVsLength'].forEach(function (id) {
+        document.getElementById(id).dataset.d3Enhanced = 'true';
+    });
+});

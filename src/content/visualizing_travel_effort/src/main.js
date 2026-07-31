@@ -184,3 +184,17 @@ dispatch.on("loaded.travelSpeedCountry", function (data) {
         .datum(data.travelSpeedByCountry)
         .call(travelSpeedCountry);
 });
+
+dispatch.on("loaded.progressiveEnhancement", function () {
+    [
+        'lengthOfStay',
+        'lengthOfStayPerPlace',
+        'travelTimePerPlace',
+        'travelTimePerPlaceScatterplot',
+        'travelTimeOverTotalTimePoints',
+        'travelTimeOverTotalTimeLine',
+        'travelSpeedCountry'
+    ].forEach(function (id) {
+        document.getElementById(id).dataset.d3Enhanced = 'true';
+    });
+});

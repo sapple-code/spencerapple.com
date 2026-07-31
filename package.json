@@ -26,7 +26,7 @@
     "audit:dependencies": "npm audit --audit-level=low && npm audit signatures",
     "build": "node build.js",
     "preview": "node build.js --preview",
-    "test": "npm run build && node test/build-smoke.js",
+    "test": "npm run build && node test/build-smoke.js && node test/d3-progressive-enhancement.js",
     "update-local-modules": "npm install --ignore-scripts"
   }
 }

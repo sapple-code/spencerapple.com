@@ -62,8 +62,8 @@ function appendLegend(element) {
   items.append('span').text((genre) => genre);
 }
 
-function renderBooksByYear() {
-  const element = document.querySelector('#books-by-year');
+function renderBooksByYear(rootDocument) {
+  const element = rootDocument.querySelector('#books-by-year');
   if (!element) return;
 
   clear(element);
@@ -150,8 +150,8 @@ function renderBooksByYear() {
     .text('Based on 97 of 99 books that count as read: 41 use Finished Reading, 53 use Last Activity as a proxy, and 3 use Started Reading. Two books are undated. 2026 is partial through June 25.');
 }
 
-function renderAveragePages() {
-  const element = document.querySelector('#average-pages-by-genre');
+function renderAveragePages(rootDocument) {
+  const element = rootDocument.querySelector('#average-pages-by-genre');
   if (!element) return;
 
   clear(element);
@@ -240,8 +240,8 @@ function renderAveragePages() {
     .text('All 99 read books now have page counts: 48 came from the sheet, 50 were matched to the recorded Kindle ASIN, and Good to Great uses the original hardcover edition. Page counts vary by edition.');
 }
 
-function renderBookScatter() {
-  const element = document.querySelector('#books-page-scatter');
+function renderBookScatter(rootDocument) {
+  const element = rootDocument.querySelector('#books-page-scatter');
   if (!element) return;
 
   clear(element);
@@ -373,8 +373,8 @@ function renderBookScatter() {
     .text('Each dot is one book that counts as read. Two manually completed books have no usable date and are omitted: The Hard Thing About Hard Things and Good to Great. Page count is edition-dependent.');
 }
 
-function renderPagesVsFlips() {
-  const element = document.querySelector('#pages-vs-page-flips');
+function renderPagesVsFlips(rootDocument) {
+  const element = rootDocument.querySelector('#pages-vs-page-flips');
   if (!element) return;
 
   clear(element);
@@ -488,8 +488,8 @@ function renderPagesVsFlips() {
     .text('The dashed line is an ordinary least-squares trend, not a conversion rule. Page flips are Kindle interaction events and can include navigation or revisiting; eight read books have no flip count.');
 }
 
-function renderDailyPages() {
-  const element = document.querySelector('#pages-per-day');
+function renderDailyPages(rootDocument) {
+  const element = rootDocument.querySelector('#pages-per-day');
   if (!element) return;
 
   clear(element);
@@ -617,8 +617,8 @@ function renderDailyPages() {
     .text(`Estimate, not observed daily activity: each book’s pages or flips are spread evenly across its inclusive Started Reading → chart-date interval, overlapping books are added, and zero-reading gaps stay in the timeline. The flip line converts at ${(1 / pagesPerFlip).toFixed(2)} flips per page, calibrated across 91 books; it covers 90 timed books versus 96 for the page-count line. One reversed source interval is treated as a same-day read.`);
 }
 
-function renderCompletionCadence() {
-  const element = document.querySelector('#completion-cadence');
+function renderCompletionCadence(rootDocument) {
+  const element = rootDocument.querySelector('#completion-cadence');
   if (!element) return;
 
   clear(element);
@@ -719,20 +719,28 @@ function renderCompletionCadence() {
     .text('This shows recorded read-date cadence, not daily reading. Among the 97 dateable books, the median gap is 16 days and the longest is 166 days; 56 dates are activity/start proxies rather than explicit finishes.');
 }
 
-function render() {
-  renderBooksByYear();
-  renderAveragePages();
-  renderBookScatter();
-  renderPagesVsFlips();
-  renderDailyPages();
-  renderCompletionCadence();
+function render(rootDocument = document) {
+  renderBooksByYear(rootDocument);
+  renderAveragePages(rootDocument);
+  renderBookScatter(rootDocument);
+  renderPagesVsFlips(rootDocument);
+  renderDailyPages(rootDocument);
+  renderCompletionCadence(rootDocument);
+
+  for (const element of rootDocument.querySelectorAll('.reading-chart')) {
+    element.dataset.d3Enhanced = 'true';
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  render();
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    window.clearTimeout(resizeTimer);
-    resizeTimer = window.setTimeout(render, 120);
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    render(document);
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => render(document), 120);
+    });
   });
-});
+}
+
+module.exports = { render };
