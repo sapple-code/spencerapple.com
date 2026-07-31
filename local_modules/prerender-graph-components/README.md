@@ -43,3 +43,23 @@ d3.select('#budgetByCountry')
     .datum(data.budgetPerCountry)
     .call(budgetPerCountry)
 ```
+
+### Custom charts
+
+Use `progressiveRenderer` when a post needs a custom D3 chart that does not fit
+the built-in bar, scatter, or line components. The same renderer then runs at
+build time and in the browser:
+
+```javascript
+const charts = require('prerender-graph-components');
+
+const render = charts.progressiveRenderer(function (document) {
+    // Render custom charts into document.
+}, { selector: '.reading-chart' });
+
+render(document);
+```
+
+Build-time charts receive `data-d3-prerendered="true"`. Browser rendering
+replaces that marker with `data-d3-enhanced="true"`, which makes the rendering
+lifecycle testable without prescribing a particular chart implementation.

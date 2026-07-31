@@ -186,15 +186,16 @@ dispatch.on("loaded.travelSpeedCountry", function (data) {
 });
 
 dispatch.on("loaded.progressiveEnhancement", function () {
-    [
-        'lengthOfStay',
-        'lengthOfStayPerPlace',
-        'travelTimePerPlace',
-        'travelTimePerPlaceScatterplot',
-        'travelTimeOverTotalTimePoints',
-        'travelTimeOverTotalTimeLine',
-        'travelSpeedCountry'
-    ].forEach(function (id) {
-        document.getElementById(id).dataset.d3Enhanced = 'true';
-    });
+    prerenderGraphComponents.markEnhanced(
+        document,
+        [
+            '#lengthOfStay',
+            '#lengthOfStayPerPlace',
+            '#travelTimePerPlace',
+            '#travelTimePerPlaceScatterplot',
+            '#travelTimeOverTotalTimePoints',
+            '#travelTimeOverTotalTimeLine',
+            '#travelSpeedCountry'
+        ].join(', ')
+    );
 });

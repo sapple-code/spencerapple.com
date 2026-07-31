@@ -1,6 +1,7 @@
 'use strict';
 
 const d3 = require('d3');
+const prerenderGraphComponents = require('prerender-graph-components');
 const readingHistory = require('../src/drafts/the-books-ive-read/data/reading-history.json');
 
 const genres = [
@@ -719,18 +720,18 @@ function renderCompletionCadence(rootDocument) {
     .text('This shows recorded read-date cadence, not daily reading. Among the 97 dateable books, the median gap is 16 days and the longest is 166 days; 56 dates are activity/start proxies rather than explicit finishes.');
 }
 
-function render(rootDocument = document) {
+function renderCharts(rootDocument) {
   renderBooksByYear(rootDocument);
   renderAveragePages(rootDocument);
   renderBookScatter(rootDocument);
   renderPagesVsFlips(rootDocument);
   renderDailyPages(rootDocument);
   renderCompletionCadence(rootDocument);
-
-  for (const element of rootDocument.querySelectorAll('.reading-chart')) {
-    element.dataset.d3Enhanced = 'true';
-  }
 }
+
+const render = prerenderGraphComponents.progressiveRenderer(renderCharts, {
+  selector: '.reading-chart'
+});
 
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {

@@ -72,7 +72,8 @@ dispatch.on("loaded.budgetByPlace", function (data) {
 });
 
 dispatch.on("loaded.progressiveEnhancement", function () {
-    ['budgetByCountry', 'spendingPerPlace', 'avgVsLength'].forEach(function (id) {
-        document.getElementById(id).dataset.d3Enhanced = 'true';
-    });
+    prerenderGraphComponents.markEnhanced(
+        document,
+        '#budgetByCountry, #spendingPerPlace, #avgVsLength'
+    );
 });
