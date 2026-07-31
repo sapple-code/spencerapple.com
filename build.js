@@ -179,11 +179,8 @@ function preprocessVisualizations() {
       file.filename = path.posix.basename(filename);
     }
 
-    const contentFiles = Object.entries(files).filter(
-      ([filename, file]) =>
-        filename.endsWith('.html') &&
-        Array.isArray(file.collection) &&
-        file.collection.includes('content')
+    const contentFiles = Object.entries(files).filter(([filename]) =>
+      filename.endsWith('.html')
     );
 
     for (const [, htmlFile] of contentFiles) {
