@@ -16,6 +16,15 @@ const siteDirectory = __dirname;
 const sourceDirectory = path.join(siteDirectory, 'src');
 const buildDirectory = path.join(siteDirectory, 'build');
 const watchIgnoredPaths = ['.git', 'build', 'node_modules', '**/.*.swp'];
+const liveReloadPath = '/__dev/reload';
+const liveReloadScript = `<script>
+  (() => {
+    const events = new EventSource('${liveReloadPath}');
+    events.addEventListener('message', (event) => {
+      if (event.data === 'reload') window.location.reload();
+    });
+  })();
+</script>`;
 
 function addLegacyD3Compat(d3Module) {
   const category20 = [
@@ -268,6 +277,7 @@ function createSite() {
 }
 
 function serveBuild() {
+  const liveReloadClients = new Set();
   const contentTypes = {
     '.css': 'text/css; charset=utf-8',
     '.html': 'text/html; charset=utf-8',
@@ -281,6 +291,19 @@ function serveBuild() {
   const server = http.createServer((request, response) => {
     const requestUrl = new URL(request.url, 'http://localhost');
     const requestPath = decodeURIComponent(requestUrl.pathname);
+
+    if (requestPath === liveReloadPath) {
+      response.writeHead(200, {
+        'Cache-Control': 'no-cache, no-transform',
+        Connection: 'keep-alive',
+        'Content-Type': 'text/event-stream'
+      });
+      response.write(': connected\n\n');
+      liveReloadClients.add(response);
+      request.on('close', () => liveReloadClients.delete(response));
+      return;
+    }
+
     const relativePath = requestPath.endsWith('/')
       ? path.join(requestPath, 'index.html')
       : requestPath;
@@ -310,16 +333,29 @@ function serveBuild() {
       response.statusCode = 404;
     }
 
-    response.setHeader(
-      'Content-Type',
-      contentTypes[path.extname(filePath)] || 'application/octet-stream'
-    );
+    const extension = path.extname(filePath);
+    response.setHeader('Content-Type', contentTypes[extension] || 'application/octet-stream');
+
+    if (extension === '.html') {
+      const html = fs.readFileSync(filePath, 'utf8');
+      response.end(html.replace('</body>', `${liveReloadScript}</body>`));
+      return;
+    }
+
     fs.createReadStream(filePath).pipe(response);
   });
 
   server.listen(Number(process.env.PORT || 8080), () => {
     console.log(`Preview: http://localhost:${server.address().port}`);
   });
+
+  return {
+    reload() {
+      for (const client of liveReloadClients) {
+        client.write('data: reload\n\n');
+      }
+    }
+  };
 }
 
 async function main() {
@@ -328,16 +364,17 @@ async function main() {
 
   if (preview) {
     site.watch('.');
-    let serving = false;
+    let previewServer;
     site.build((error, files) => {
       if (error) {
         console.error(error);
         return;
       }
       console.log(`Built ${Object.keys(files).length} files`);
-      if (!serving) {
-        serving = true;
-        serveBuild();
+      if (!previewServer) {
+        previewServer = serveBuild();
+      } else {
+        previewServer.reload();
       }
     });
     return;

@@ -18,8 +18,18 @@ function request(url) {
   return new Promise((resolve, reject) => {
     http
       .get(url, (response) => {
-        response.resume();
-        response.on('end', () => resolve(response));
+        let body = '';
+        response.setEncoding('utf8');
+        response.on('data', (chunk) => {
+          body += chunk;
+        });
+        response.on('end', () => {
+          resolve({
+            body,
+            headers: response.headers,
+            statusCode: response.statusCode
+          });
+        });
       })
       .on('error', reject);
   });
@@ -33,6 +43,36 @@ async function verifyPreviewRoute(previewUrl) {
 
   const page = await request(`${previewUrl}${route}/`);
   assert.equal(page.statusCode, 200);
+  assert.match(page.body, /new EventSource\('\/__dev\/reload'\)/);
+}
+
+function waitForReload(previewUrl, triggerRebuild) {
+  return new Promise((resolve, reject) => {
+    let events = '';
+    let rebuildTriggered = false;
+    const request = http.get(`${previewUrl}/__dev/reload`, (response) => {
+      if (response.statusCode !== 200) {
+        reject(new Error(`live reload returned HTTP ${response.statusCode}`));
+        response.resume();
+        return;
+      }
+
+      assert.equal(response.headers['content-type'], 'text/event-stream');
+      response.setEncoding('utf8');
+      response.on('data', (chunk) => {
+        events += chunk;
+        if (!rebuildTriggered && events.includes(': connected\n\n')) {
+          rebuildTriggered = true;
+          triggerRebuild();
+        }
+        if (events.includes('data: reload\n\n')) {
+          resolve();
+          request.destroy();
+        }
+      });
+    });
+    request.on('error', reject);
+  });
 }
 
 async function verifyDevWatch() {
@@ -46,6 +86,7 @@ async function verifyDevWatch() {
   let builds = 0;
   let output = '';
   let verifyingPreview = false;
+  let reloadReceived = false;
 
   try {
     await new Promise((resolve, reject) => {
@@ -71,16 +112,25 @@ async function verifyDevWatch() {
         output += text;
         builds += (text.match(/Built \d+ files/g) || []).length;
 
-        if (builds === 1 && !fs.existsSync(triggerFile)) {
-          fs.writeFileSync(triggerFile, 'trigger a rebuild\n');
-        } else if (builds >= 2 && !verifyingPreview) {
+        if (builds >= 1 && !verifyingPreview) {
           verifyingPreview = true;
           const previewUrl = output.match(/Preview: (http:\/\/[^\s]+)/)?.[1];
           if (!previewUrl) {
-            finish(new Error(`development server URL was not reported\n${output}`));
+            verifyingPreview = false;
             return;
           }
-          verifyPreviewRoute(previewUrl).then(() => finish(), finish);
+          verifyPreviewRoute(previewUrl)
+            .then(() =>
+              waitForReload(previewUrl, () => {
+                fs.writeFileSync(triggerFile, 'trigger a rebuild\n');
+              })
+            )
+            .then(() => {
+              reloadReceived = true;
+              if (builds >= 2) finish();
+            }, finish);
+        } else if (builds >= 2 && reloadReceived) {
+          finish();
         }
       });
       child.stderr.on('data', (chunk) => {
@@ -103,7 +153,7 @@ async function verifyDevWatch() {
   }
 
   assert.equal(builds, 2);
-  console.log('Verified development rebuilds and extensionless preview routes');
+  console.log('Verified development rebuilds, routes, and browser live reload');
 }
 
 verifyDevWatch().catch((error) => {
