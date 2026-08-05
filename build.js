@@ -15,6 +15,7 @@ const preview = process.argv.includes('--preview');
 const siteDirectory = __dirname;
 const sourceDirectory = path.join(siteDirectory, 'src');
 const buildDirectory = path.join(siteDirectory, 'build');
+const watchIgnoredPaths = ['.git', 'build', 'node_modules', '**/.*.swp'];
 
 function addLegacyD3Compat(d3Module) {
   const category20 = [
@@ -239,7 +240,7 @@ function createSite() {
     })
     .source('./src')
     .destination('./build')
-    .ignore(['**/.*.swp'])
+    .ignore(watchIgnoredPaths)
     .use(
       markdown({
         engineOptions: {
@@ -304,8 +305,8 @@ function serveBuild() {
     fs.createReadStream(filePath).pipe(response);
   });
 
-  server.listen(8080, () => {
-    console.log('Preview: http://localhost:8080');
+  server.listen(Number(process.env.PORT || 8080), () => {
+    console.log(`Preview: http://localhost:${server.address().port}`);
   });
 }
 
@@ -314,7 +315,7 @@ async function main() {
   const site = createSite();
 
   if (preview) {
-    site.watch(['src', 'layouts', 'local_modules']);
+    site.watch('.');
     let serving = false;
     site.build((error, files) => {
       if (error) {
