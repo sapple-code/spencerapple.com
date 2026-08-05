@@ -2,6 +2,7 @@
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const http = require('node:http');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
 
@@ -11,6 +12,27 @@ const timeoutMilliseconds = 15_000;
 
 function removeTriggerFile() {
   fs.rmSync(triggerFile, { force: true });
+}
+
+function request(url) {
+  return new Promise((resolve, reject) => {
+    http
+      .get(url, (response) => {
+        response.resume();
+        response.on('end', () => resolve(response));
+      })
+      .on('error', reject);
+  });
+}
+
+async function verifyPreviewRoute(previewUrl) {
+  const route = '/content/visualizing_travel_effort';
+  const redirect = await request(`${previewUrl}${route}`);
+  assert.equal(redirect.statusCode, 308);
+  assert.equal(redirect.headers.location, `${route}/`);
+
+  const page = await request(`${previewUrl}${route}/`);
+  assert.equal(page.statusCode, 200);
 }
 
 async function verifyDevWatch() {
@@ -23,6 +45,7 @@ async function verifyDevWatch() {
   });
   let builds = 0;
   let output = '';
+  let verifyingPreview = false;
 
   try {
     await new Promise((resolve, reject) => {
@@ -50,8 +73,14 @@ async function verifyDevWatch() {
 
         if (builds === 1 && !fs.existsSync(triggerFile)) {
           fs.writeFileSync(triggerFile, 'trigger a rebuild\n');
-        } else if (builds >= 2) {
-          finish();
+        } else if (builds >= 2 && !verifyingPreview) {
+          verifyingPreview = true;
+          const previewUrl = output.match(/Preview: (http:\/\/[^\s]+)/)?.[1];
+          if (!previewUrl) {
+            finish(new Error(`development server URL was not reported\n${output}`));
+            return;
+          }
+          verifyPreviewRoute(previewUrl).then(() => finish(), finish);
         }
       });
       child.stderr.on('data', (chunk) => {
@@ -74,7 +103,7 @@ async function verifyDevWatch() {
   }
 
   assert.equal(builds, 2);
-  console.log('Verified development mode rebuilds for project file changes');
+  console.log('Verified development rebuilds and extensionless preview routes');
 }
 
 verifyDevWatch().catch((error) => {

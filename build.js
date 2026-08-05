@@ -279,9 +279,8 @@ function serveBuild() {
   };
 
   const server = http.createServer((request, response) => {
-    const requestPath = decodeURIComponent(
-      new URL(request.url, 'http://localhost').pathname
-    );
+    const requestUrl = new URL(request.url, 'http://localhost');
+    const requestPath = decodeURIComponent(requestUrl.pathname);
     const relativePath = requestPath.endsWith('/')
       ? path.join(requestPath, 'index.html')
       : requestPath;
@@ -290,6 +289,19 @@ function serveBuild() {
     if (!filePath.startsWith(`${buildDirectory}${path.sep}`)) {
       response.writeHead(400);
       response.end('Bad request');
+      return;
+    }
+
+    const directoryIndex = path.join(filePath, 'index.html');
+    if (
+      !requestPath.endsWith('/') &&
+      fs.existsSync(directoryIndex) &&
+      fs.statSync(directoryIndex).isFile()
+    ) {
+      response.writeHead(308, {
+        Location: `${requestUrl.pathname}/${requestUrl.search}`
+      });
+      response.end();
       return;
     }
 
