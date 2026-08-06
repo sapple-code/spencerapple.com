@@ -25,8 +25,9 @@
   "scripts": {
     "audit:dependencies": "npm audit --audit-level=low && npm audit signatures",
     "build": "node build.js",
-    "preview": "node build.js --preview",
-    "test": "npm run build && node test/build-smoke.js",
+    "dev": "node build.js --preview",
+    "preview": "npm run dev",
+    "test": "npm run build && node test/build-smoke.js && node test/dev-watch.js",
     "update-local-modules": "npm install --ignore-scripts"
   }
 }

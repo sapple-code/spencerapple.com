@@ -9,8 +9,14 @@ Install the pinned Node.js version with [mise](https://mise.jdx.dev/), then inst
 Build artifacts
 > npm run build
 
-Build artifacts and start preview server
-> npm run preview
+Start the development server
+> npm run dev
+
+Development mode watches the entire project and performs a full rebuild after
+each change. Open preview pages reload automatically after a successful build.
+Generated output (`build`), installed dependencies (`node_modules`), and Git
+metadata are excluded to prevent rebuild loops. `npm run preview` remains an
+alias for the same command.
 
 Build and smoke-test generated pages, assets, data, and pre-rendered graphs
 > npm test
